@@ -1,0 +1,9 @@
+[09-Apr-2021 07:49:50 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user '9JNEyuf&amp;A'@'localhost' (using password: YES) in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 2
+[09-Apr-2021 07:49:50 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user '9JNEyuf&amp;A'@'localhost' (using password: YES) in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 4
+[09-Apr-2021 07:49:50 UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 6
+[09-Apr-2021 07:49:50 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user '9JNEyuf&amp;A'@'localhost' (using password: YES) in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 2
+[09-Apr-2021 07:49:50 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user '9JNEyuf&amp;A'@'localhost' (using password: YES) in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 4
+[09-Apr-2021 07:49:50 UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 6
+[09-Apr-2021 07:50:16 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user '9JNEyuf&amp;A'@'localhost' (using password: YES) in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 2
+[09-Apr-2021 07:50:16 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user '9JNEyuf&amp;A'@'localhost' (using password: YES) in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 4
+[09-Apr-2021 07:50:16 UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home/u869695684/domains/nttoutlet.com/public_html/gonceng/dbconnect.php on line 6
