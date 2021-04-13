@@ -5,7 +5,7 @@ class Pages extends CI_Controller
 
     private $app_name;
 
-    private $redirectUrl=NULL;
+    private $redirectUrl = NULL;
 
     public function __construct()
     {
@@ -14,7 +14,7 @@ class Pages extends CI_Controller
         $this->load->model('Setting_model');
         $this->load->model('common_model');
         $this->load->model('Api_model', 'api_model');
-
+        $this->load->model('Shipping_model');
         $app_setting = $this->api_model->app_details();
 
         $this->app_name = $app_setting->app_name;
@@ -55,7 +55,7 @@ class Pages extends CI_Controller
         $count = $countOrd = $monthCount = 0;
 
         for ($mon = 1; $mon <= 12; $mon++) {
-            
+
             $monthCount++;
 
             if ($this->input->get('order_filter') != '') {
@@ -319,7 +319,9 @@ class Pages extends CI_Controller
 
         $data['category_list'] = $this->api_model->category_list();
         $data['home_category'] = $this->common_model->selectByids(array('set_on_home' => 1), 'tbl_category');
-
+        $data["is_rajaongkir"] = $this->Setting_model->get_web_details()->is_raja_ongkir;
+        $data["courier"] = $this->Shipping_model->get_list_mst_Courier();
+        $data["shipping"] = $this->Shipping_model->get_courier();
         $data["redirectUrl"] = $this->redirectUrl;
 
         $this->template->load('admin/template', 'admin/page/settings', $data); // :blush:
@@ -337,7 +339,7 @@ class Pages extends CI_Controller
 
         $items = array();
 
-        if(!isset($_GET['page']) || $_GET['page'] == 1)
+        if (!isset($_GET['page']) || $_GET['page'] == 1)
             $items[] = array("id" => '', "text" => '---' . $this->lang->line('select_opt_lbl') . '---');
 
         if ($type == 'category') {
@@ -366,8 +368,7 @@ class Pages extends CI_Controller
                 if (count($items) > 0)
                     $items[] = array("id" => "0", "text" => $this->lang->line('no_result_found_msg'));
             }
-        }
-        else if ($type == 'brand') {
+        } else if ($type == 'brand') {
 
             $this->load->model('Brand_model');
 
@@ -378,9 +379,7 @@ class Pages extends CI_Controller
                 $total_items = count($this->Brand_model->get_list('id', 'DESC', '', '', $keyword));
 
                 $data = $this->Brand_model->get_list('id', 'DESC', $pageEnd, $pageStart, $keyword);
-            } 
-            else 
-            {
+            } else {
                 $total_items = count($this->Brand_model->get_list('id', 'DESC'));
                 $data = $this->Brand_model->get_list('id', 'DESC', $pageEnd, $pageStart);
             }
@@ -393,8 +392,7 @@ class Pages extends CI_Controller
                 if (count($items) > 0)
                     $items[] = array("id" => "0", "text" => $this->lang->line('no_result_found_msg'));
             }
-        }
-        else if ($type == 'offer') {
+        } else if ($type == 'offer') {
 
             $this->load->model('Offers_model');
 
@@ -405,9 +403,7 @@ class Pages extends CI_Controller
                 $total_items = count($this->Offers_model->offers_list('id', 'DESC', '', '', $keyword));
 
                 $data = $this->Offers_model->offers_list('id', 'DESC', $pageEnd, $pageStart, $keyword);
-            } 
-            else 
-            {
+            } else {
                 $total_items = count($this->Offers_model->offers_list('id', 'DESC'));
                 $data = $this->Offers_model->offers_list('id', 'DESC', $pageEnd, $pageStart);
             }
@@ -420,8 +416,7 @@ class Pages extends CI_Controller
                 if (count($items) > 0)
                     $items[] = array("id" => "0", "text" => $this->lang->line('no_result_found_msg'));
             }
-        }
-        else if ($type == 'banner') {
+        } else if ($type == 'banner') {
 
             $this->load->model('Banner_model');
 
@@ -432,9 +427,7 @@ class Pages extends CI_Controller
                 $total_items = count($this->Banner_model->banner_list('id', 'DESC', '', '', $keyword));
 
                 $data = $this->Banner_model->banner_list('id', 'DESC', $pageEnd, $pageStart, $keyword);
-            } 
-            else 
-            {
+            } else {
                 $total_items = count($this->Banner_model->banner_list('id', 'DESC'));
                 $data = $this->Banner_model->banner_list('id', 'DESC', $pageEnd, $pageStart);
             }
@@ -447,8 +440,7 @@ class Pages extends CI_Controller
                 if (count($items) > 0)
                     $items[] = array("id" => "0", "text" => $this->lang->line('no_result_found_msg'));
             }
-        }
-        else if ($type == 'product') {
+        } else if ($type == 'product') {
 
             $this->load->model('Product_model');
 
@@ -459,9 +451,7 @@ class Pages extends CI_Controller
                 $total_items = count($this->Product_model->product_list('id', 'DESC', '', '', $keyword));
 
                 $data = $this->Product_model->product_list('id', 'DESC', $pageEnd, $pageStart, $keyword);
-            } 
-            else 
-            {
+            } else {
                 $total_items = count($this->Product_model->product_list('id', 'DESC'));
                 $data = $this->Product_model->product_list('id', 'DESC', $pageEnd, $pageStart);
             }
@@ -489,13 +479,14 @@ class Pages extends CI_Controller
 
         $data['settings_row'] = $this->Setting_model->get_details();
         $data['web_settings_row'] = $this->Setting_model->get_web_details();
+
         $this->template->load('admin/template', 'admin/page/web_settings', $data); // :blush:
 
     }
 
     public function android_settings()
     {
-        if($this->common_model->selectByidParam('1', 'tbl_verify', 'android_envato_purchased_status')!=1){
+        if ($this->common_model->selectByidParam('1', 'tbl_verify', 'android_envato_purchased_status') != 1) {
             show_404();
         }
 
@@ -530,7 +521,7 @@ class Pages extends CI_Controller
 
     public function api_urls()
     {
-        if($this->common_model->selectByidParam('1', 'tbl_verify', 'android_envato_purchased_status')!=1){
+        if ($this->common_model->selectByidParam('1', 'tbl_verify', 'android_envato_purchased_status') != 1) {
             show_404();
         }
         $data = array();
@@ -558,10 +549,9 @@ class Pages extends CI_Controller
 
     public function add_payment_faq()
     {
-        $redirect=$_GET['redirect'].(isset($_GET['page']) ? '&page='.$_GET['page'] : '');
+        $redirect = $_GET['redirect'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '');
 
-        if(!empty($this->input->post('faq_question')))
-        {
+        if (!empty($this->input->post('faq_question'))) {
             foreach ($this->input->post('faq_question') as $key => $value) {
 
                 $question = stripslashes(trim($value));
@@ -581,23 +571,21 @@ class Pages extends CI_Controller
 
             $message = array('message' => $this->lang->line('add_msg'), 'class' => 'success');
             $this->session->set_flashdata('response_msg', $message);
-        }
-        else{
+        } else {
             $message = array('message' => $this->lang->line('input_required'), 'class' => 'error');
-            $this->session->set_flashdata('response_msg', $message);   
+            $this->session->set_flashdata('response_msg', $message);
         }
 
-        if(isset($_GET['redirect'])){
+        if (isset($_GET['redirect'])) {
             redirect($redirect, 'refresh');
-        }
-        else{
+        } else {
             redirect(base_url() . 'admin/payment-faq/add');
         }
     }
 
     public function edit_payment_faq($id)
-    {   
-        $redirect=$_GET['redirect'].(isset($_GET['page']) ? '&page='.$_GET['page'] : '');
+    {
+        $redirect = $_GET['redirect'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '');
 
         foreach ($this->input->post('faq_question') as $key => $value) {
 
@@ -616,10 +604,9 @@ class Pages extends CI_Controller
         $message = array('message' => $this->lang->line('update_msg'), 'class' => 'success');
         $this->session->set_flashdata('response_msg', $message);
 
-        if(isset($_GET['redirect'])){
+        if (isset($_GET['redirect'])) {
             redirect($redirect, 'refresh');
-        }
-        else{
+        } else {
             redirect(base_url() . 'admin/payment-faq/edit/' . $id);
         }
     }
@@ -643,10 +630,9 @@ class Pages extends CI_Controller
 
     public function add_faq()
     {
-        $redirect=$_GET['redirect'].(isset($_GET['page']) ? '&page='.$_GET['page'] : '');
+        $redirect = $_GET['redirect'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '');
 
-        if(!empty($this->input->post('faq_question')))
-        {
+        if (!empty($this->input->post('faq_question'))) {
             foreach ($this->input->post('faq_question') as $key => $value) {
 
                 $question = stripslashes(trim($value));
@@ -665,25 +651,22 @@ class Pages extends CI_Controller
 
             $message = array('message' => $this->lang->line('add_msg'), 'class' => 'success');
             $this->session->set_flashdata('response_msg', $message);
-        }
-        else{
+        } else {
             $message = array('message' => $this->lang->line('input_required'), 'class' => 'error');
-            $this->session->set_flashdata('response_msg', $message);   
+            $this->session->set_flashdata('response_msg', $message);
         }
 
-        if(isset($_GET['redirect'])){
+        if (isset($_GET['redirect'])) {
             redirect($redirect, 'refresh');
-        }
-        else{
+        } else {
             redirect(base_url() . 'admin/faq/add');
         }
-        
     }
 
     public function edit_faq($id)
     {
-        $redirect=$_GET['redirect'].(isset($_GET['page']) ? '&page='.$_GET['page'] : '');
-        
+        $redirect = $_GET['redirect'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '');
+
         foreach ($this->input->post('faq_question') as $key => $value) {
 
             $question = stripslashes(trim($value));
@@ -701,10 +684,9 @@ class Pages extends CI_Controller
         $message = array('message' => $this->lang->line('update_msg'), 'class' => 'success');
         $this->session->set_flashdata('response_msg', $message);
 
-        if(isset($_GET['redirect'])){
+        if (isset($_GET['redirect'])) {
             redirect($redirect, 'refresh');
-        }
-        else{
+        } else {
             redirect(base_url() . 'admin/faq/edit/' . $id);
         }
     }
@@ -716,7 +698,7 @@ class Pages extends CI_Controller
         );
         $data = $this->security->xss_clean($data);
         $this->common_model->update($data, $id, 'tbl_faq');
-        $response = array('message' => $this->lang->line('enable_msg'),'status' => '1','class' => 'success');
+        $response = array('message' => $this->lang->line('enable_msg'), 'status' => '1', 'class' => 'success');
         echo json_encode($response);
         exit;
     }
@@ -729,7 +711,7 @@ class Pages extends CI_Controller
         );
         $data = $this->security->xss_clean($data);
         $this->common_model->update($data, $id, 'tbl_faq');
-        $response = array('message' => $this->lang->line('disable_msg'),'status' => '1','class' => 'success');
+        $response = array('message' => $this->lang->line('disable_msg'), 'status' => '1', 'class' => 'success');
         echo json_encode($response);
         exit;
     }
@@ -765,20 +747,18 @@ class Pages extends CI_Controller
 
             $data['transactions'] = $this->common_model->selectWhere('tbl_transaction', array('status' => '1', 'gateway' => $payment_mode), 'DESC');
 
-            if($this->input->get('date_filter')){
+            if ($this->input->get('date_filter')) {
 
-                $date_filter=trim($this->input->get('date_filter'));
+                $date_filter = trim($this->input->get('date_filter'));
 
-                $data['transactions'] = $this->common_model->selectWhere('tbl_transaction',array('status' => '1', 'gateway' => $payment_mode, "DATE_FORMAT(FROM_UNIXTIME(`date`), '%d-%m-%Y') =" => $date_filter), 'DESC');
+                $data['transactions'] = $this->common_model->selectWhere('tbl_transaction', array('status' => '1', 'gateway' => $payment_mode, "DATE_FORMAT(FROM_UNIXTIME(`date`), '%d-%m-%Y') =" => $date_filter), 'DESC');
             }
+        } else if ($this->input->get('date_filter')) {
 
-        }
-        else if($this->input->get('date_filter')){
+            $date_filter = trim($this->input->get('date_filter'));
 
-            $date_filter=trim($this->input->get('date_filter'));
-
-            $data['transactions'] = $this->common_model->selectWhere('tbl_transaction',array("DATE_FORMAT(FROM_UNIXTIME(`date`), '%d-%m-%Y') =" => $date_filter),'DESC');
-        }else {
+            $data['transactions'] = $this->common_model->selectWhere('tbl_transaction', array("DATE_FORMAT(FROM_UNIXTIME(`date`), '%d-%m-%Y') =" => $date_filter), 'DESC');
+        } else {
             $data['transactions'] = $this->common_model->selectWhere('tbl_transaction', array('status' => '1'), 'DESC');
         }
 
@@ -815,9 +795,7 @@ class Pages extends CI_Controller
             }
 
             $data['refunds'] = $this->common_model->selectWhere('tbl_refund', array('gateway <>' => 'cod', 'request_status' => $refund_status), 'DESC');
-        } 
-        else 
-        {
+        } else {
             $data['refunds'] = $this->api_model->get_refund_data(0, 'order_id');
         }
         $this->template->load('admin/template', 'admin/page/refunds', $data); // :blush:
@@ -864,7 +842,7 @@ class Pages extends CI_Controller
     // for notification page
     public function notification()
     {
-        if($this->common_model->selectByidParam('1', 'tbl_verify', 'android_envato_purchased_status')!=1){
+        if ($this->common_model->selectByidParam('1', 'tbl_verify', 'android_envato_purchased_status') != 1) {
             show_404();
         }
 
@@ -1146,6 +1124,9 @@ class Pages extends CI_Controller
                     'libraries_load_from'  =>  trim($this->input->post('libraries_load_from')),
                     'header_code'  =>  htmlentities(trim($this->input->post('header_code'))),
                     'footer_code'  =>  htmlentities(trim($this->input->post('footer_code'))),
+                    'is_raja_ongkir'  =>  trim($this->input->post('is_raja_ongkir')) == "true" ? 1 : 0,
+                    'url_rajaongkir'  =>  trim($this->input->post('url_rajaongkir')),
+                    'key_rajaongkir'  =>  trim($this->input->post('key_rajaongkir')),
                 );
 
                 if ($_FILES['web_logo_1']['error'] != 4) {
@@ -1409,6 +1390,13 @@ class Pages extends CI_Controller
                 $data = array(
                     'contact_page_title'  => trim($this->input->post('contact_page_title')),
                     'address'  => trim($this->input->post('address')),
+                    'subdistrict'  => trim($this->input->post('web_subdistric')),
+                    'district'  => trim($this->input->post('web_distric')),
+                    'id_ro_city' => trim($this->input->post('id_web_city')),
+                    'city'  => trim($this->input->post('web_city')),
+                    'id_ro_province' => trim($this->input->post('id_web_province')),
+                    'province'  => trim($this->input->post('web_province')),
+                    'pcode'  => trim($this->input->post('web_pcode')),
                     'contact_number'  => trim($this->input->post('contact_number')),
                     'contact_email'  => trim($this->input->post('contact_email')),
                     'android_app_url'  => trim($this->input->post('android_app_url')),
@@ -1627,7 +1615,22 @@ class Pages extends CI_Controller
                 redirect(base_url() . 'admin/web-settings?page_settings&page=ads_place', 'refresh');
 
                 break;
+            case 'shipping':
 
+                $data = array(
+                    'shipping_mst'  =>  $this->input->post('shipping_mst') ? $this->input->post('shipping_mst') : 'false',
+
+                );
+
+                $data = $this->security->xss_clean($data);
+
+                if ($this->Shipping_model->InsertShippingWeb($data)) {
+                    $message = array('message' => $this->lang->line('update_msg'), 'class' => 'success');
+                    $this->session->set_flashdata('response_msg', $message);
+                }
+                redirect(base_url() . 'admin/settings', 'refresh');
+
+                break;
             default:
 
                 break;
@@ -1745,18 +1748,15 @@ class Pages extends CI_Controller
                 );
                 break;
 
-            case 'android_purchase':
-                {
-                    $envato_buyer_name=trim($this->input->post('android_envato_buyer_name'));
-                    $purchase_code=trim($this->input->post('android_envato_purchase_code'));
-                    $package_name=trim($this->input->post('package_name'));
+            case 'android_purchase': {
+                    $envato_buyer_name = trim($this->input->post('android_envato_buyer_name'));
+                    $purchase_code = trim($this->input->post('android_envato_purchase_code'));
+                    $package_name = trim($this->input->post('package_name'));
 
                     $envato_buyer = verify_envato_purchase_code($purchase_code);
 
-                    if(!empty($envato_buyer))
-                    {
-                        if($envato_buyer_name!='' AND strcasecmp($envato_buyer->buyer, $envato_buyer_name) == 0)
-                        {
+                    if (!empty($envato_buyer)) {
+                        if ($envato_buyer_name != '' and strcasecmp($envato_buyer->buyer, $envato_buyer_name) == 0) {
 
                             $data = array(
                                 'android_envato_buyer_name'  => $envato_buyer_name,
@@ -1768,16 +1768,15 @@ class Pages extends CI_Controller
                             $this->db->where(array('id' => 1));
                             $this->db->update('tbl_verify', $data);
 
-                            $admin_url=base_url().'admin';
+                            $admin_url = base_url() . 'admin';
 
-                            verify_data_on_server($envato_buyer->item->id,$envato_buyer->buyer,$purchase_code,1,$admin_url);
+                            verify_data_on_server($envato_buyer->item->id, $envato_buyer->buyer, $purchase_code, 1, $admin_url);
 
                             $message = array('message' => $this->lang->line('envato_verify_success_lbl'), 'class' => 'success');
 
                             $this->session->set_flashdata('response_msg', $message);
                             redirect(base_url() . 'admin/verify-purchase', 'refresh');
-                        }
-                        else{
+                        } else {
 
                             // invalid envato buyer name
 
@@ -1796,15 +1795,14 @@ class Pages extends CI_Controller
                             $this->session->set_flashdata('response_msg', $message);
                             redirect(base_url() . 'admin/verify-purchase', 'refresh');
                         }
-                    }
-                    else{
+                    } else {
                         // invalid envato purchase code
 
                         $message = array('message' => $this->lang->line('envato_purchase_code_wrong_lbl'), 'class' => 'error');
                         $this->session->set_flashdata('response_msg', $message);
 
                         redirect(base_url() . 'admin/verify-purchase', 'refresh');
-                    }                    
+                    }
                 }
                 break;
 
@@ -1884,7 +1882,7 @@ class Pages extends CI_Controller
                     break;
             }
         } else if ($action == 'set_today_deal') {
-            
+
 
             $data = array(
                 'today_deal' => 1,
@@ -1893,7 +1891,7 @@ class Pages extends CI_Controller
             $data = $this->security->xss_clean($data);
             $this->common_model->updateByIn($data, $ids, 'tbl_product');
         } else if ($action == 'remove_today_deal') {
-            
+
 
             $data = array(
                 'today_deal' => 0,
@@ -2035,17 +2033,17 @@ class Pages extends CI_Controller
         //load database
         $this->load->dbutil();
 
-        $sql_file=$this->db->database.'.sql';
+        $sql_file = $this->db->database . '.sql';
 
         //create format
-        $db_format=array('format'=>'zip','filename'=>$sql_file);
+        $db_format = array('format' => 'zip', 'filename' => $sql_file);
 
-        $backup=& $this->dbutil->backup($db_format);
+        $backup = &$this->dbutil->backup($db_format);
 
-        $dbname='backup-on-'.date('d-m-y H:i').'_ecommerce_app_db.zip';
+        $dbname = 'backup-on-' . date('d-m-y H:i') . '_ecommerce_app_db.zip';
         write_file(FCPATH . '/downloads/' . $dbname, $backup);
-        
-        force_download($dbname,$backup);
+
+        force_download($dbname, $backup);
     }
 
     public function number_format_short($n, $precision = 1)
@@ -2072,9 +2070,9 @@ class Pages extends CI_Controller
             $suffix = 'T';
         }
 
-        if ( $precision > 0 ) {
-            $dotzero = '.' . str_repeat( '0', $precision );
-            $n_format = str_replace( $dotzero, '', $n_format );
+        if ($precision > 0) {
+            $dotzero = '.' . str_repeat('0', $precision);
+            $n_format = str_replace($dotzero, '', $n_format);
         }
         return $n_format . $suffix;
     }

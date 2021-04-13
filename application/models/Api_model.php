@@ -365,7 +365,7 @@ class Api_model extends CI_Model
         if($cart_ids==''){
 
             $this->db->select('cart.*');
-            $this->db->select('product.`product_title`,product.`product_slug`, product.`featured_image`, product.`product_mrp`, product.`selling_price`,product.`you_save_amt`,product.you_save_per,  product.`delivery_charge`, product.`max_unit_buy`');
+            $this->db->select('product.`product_title`,product.`product_slug`, product.`featured_image`, product.`product_mrp`, product.`selling_price`,product.`you_save_amt`,product.you_save_per,  product.`delivery_charge`, product.`max_unit_buy`,product.weight');
             $this->db->from('tbl_cart cart');
             $this->db->join('tbl_product product','cart.product_id = product.id','LEFT');
             $this->db->where($where);
@@ -379,7 +379,7 @@ class Api_model extends CI_Model
         else{
 
             $this->db->select('cart.*');
-            $this->db->select('product.product_title,product.product_slug, product.featured_image, product.product_mrp, product.selling_price,product.you_save_amt,product.you_save_per, product.delivery_charge,product.max_unit_buy');
+            $this->db->select('product.product_title,product.product_slug, product.featured_image, product.product_mrp, product.selling_price,product.you_save_amt,product.you_save_per, product.delivery_charge,product.max_unit_buy,product.weight');
             $this->db->from('tbl_cart_tmp cart');
             $this->db->join('tbl_product product','cart.product_id = product.id','LEFT');
             $this->db->where($where);

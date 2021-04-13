@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -41,27 +41,27 @@
 $route['admin/top-sale-products/(:any)'] = 'admin/pages/top_sale_products';
 $route['admin/top-sale-products'] = 'admin/pages/top_sale_products';
 
-$route['admin/payment-faq/edit/(.+)']="admin/pages/payment_faq_form";
+$route['admin/payment-faq/edit/(.+)'] = "admin/pages/payment_faq_form";
 $route['admin/payment-faq/add'] = 'admin/pages/payment_faq_form';
 
-$route['admin/faq/edit/(.+)']="admin/pages/faq_form";
+$route['admin/faq/edit/(.+)'] = "admin/pages/faq_form";
 $route['admin/faq/add'] = 'admin/pages/faq_form';
 
 // download invoice
 
 $route['product-invoice/(.+)'] = 'admin/order/download_invoice';
 
-$route['admin/refunds/export']="admin/pages/export_refund";
+$route['admin/refunds/export'] = "admin/pages/export_refund";
 
-$route['admin/transactions/export']="admin/pages/export_transaction";
+$route['admin/transactions/export'] = "admin/pages/export_transaction";
 
-$route['admin/notification']="admin/pages/notification";
+$route['admin/notification'] = "admin/pages/notification";
 
-$route['admin/refunds']="admin/pages/refunds";
+$route['admin/refunds'] = "admin/pages/refunds";
 
-$route['admin/transactions']="admin/pages/transaction";
+$route['admin/transactions'] = "admin/pages/transaction";
 
-$route['admin/contacts/edit/(.+)']="admin/contacts/contact_form";
+$route['admin/contacts/edit/(.+)'] = "admin/contacts/contact_form";
 $route['admin/contacts/add'] = 'admin/contacts/contact_form';
 
 $route['admin/deal-of-day/add'] = 'admin/deal/deal_form';
@@ -73,36 +73,36 @@ $route['admin/orders/print/(.+)'] = 'admin/order/print_order';
 $route['admin/orders/(.+)'] = 'admin/order/order_summary';
 $route['admin/orders'] = 'admin/order';
 
-$route['admin/offers/edit/(:num)']="admin/offers/offer_form";
+$route['admin/offers/edit/(:num)'] = "admin/offers/offer_form";
 $route['admin/offers/add'] = 'admin/offers/offer_form';
 $route['admin/offers/(:num)'] = 'admin/offers';
 $route['admin/offers'] = 'admin/offers';
 
 $route['admin/users/profile/(.+)'] = 'admin/users/user_profile';
-$route['admin/users/edit/(.+)']="admin/users/user_form";
+$route['admin/users/edit/(.+)'] = "admin/users/user_form";
 $route['admin/users/add'] = 'admin/users/user_form';
 $route['admin/users/(:num)'] = 'admin/users';
 $route['admin/users'] = 'admin/users';
 
-$route['admin/coupon/edit/(:num)']="admin/coupon/coupon_form";
+$route['admin/coupon/edit/(:num)'] = "admin/coupon/coupon_form";
 $route['admin/coupon/add'] = 'admin/coupon/coupon_form';
 $route['admin/coupon/(:num)'] = 'admin/coupon';
 $route['admin/coupon'] = 'admin/coupon';
 
-$route['admin/banner/edit/(.+)']="admin/banner/banner_form";
+$route['admin/banner/edit/(.+)'] = "admin/banner/banner_form";
 $route['admin/banner/add'] = 'admin/banner/banner_form';
 $route['admin/banner/products/(:num)'] = 'admin/banner/banner_products';
 $route['admin/banner/(:num)'] = 'admin/banner';
 $route['admin/banner'] = 'admin/banner';
 
-$route['admin/products/duplicate-product/(.+)']="admin/product/clone_product";
-$route['admin/products/edit/(:num)']="admin/product/product_form";
+$route['admin/products/duplicate-product/(.+)'] = "admin/product/clone_product";
+$route['admin/products/edit/(:num)'] = "admin/product/product_form";
 $route['admin/products/add'] = 'admin/product/product_form';
 $route['admin/products/(:any)'] = 'admin/product';
 
 $route['admin/products'] = 'admin/product';
 
-$route['admin/brand/edit/(:num)']="admin/brand/brand_form";
+$route['admin/brand/edit/(:num)'] = "admin/brand/brand_form";
 $route['admin/brand/add'] = 'admin/brand/brand_form';
 $route['admin/brand/(:num)'] = 'admin/brand';
 $route['admin/brand'] = 'admin/brand';
@@ -112,7 +112,7 @@ $route['admin/sub-category/add'] = 'admin/SubCategory/sub_category_form';
 $route['admin/sub-category/(:num)'] = 'admin/SubCategory';
 $route['admin/sub-category'] = 'admin/SubCategory';
 
-$route["admin/category/edit/(:num)"]="admin/category/category_form";
+$route["admin/category/edit/(:num)"] = "admin/category/category_form";
 $route['admin/category/add'] = 'admin/category/category_form';
 $route['admin/category/(:num)'] = 'admin/category';
 $route['admin/category'] = 'admin/category';
@@ -134,6 +134,10 @@ $route['admin/logout'] = 'auth/logout';
 $route['admin/login'] = 'auth/login';
 $route['admin/forgot_passoword_form'] = 'auth/forgot_password_form';
 $route['admin/forgot-password'] = 'auth/forgot_password';
+
+$route['admin/syncdataro'] = 'admin/shipping/syncdataro';
+$route['admin/getprovinceautocomplete']= 'admin/shipping/getprovinceautocomplete';
+$route['admin/getcityautocomplete'] = 'admin/shipping/getcityautocomplete';
 
 $route['admin'] = 'auth';
 
