@@ -80,4 +80,7 @@
   'fontawesome' => array(
     'normal' => $fontDir . '\43ed29441a44386a5b3b93c46e9b6448',
   ),
+  'glyphicons halflings' => array(
+    'normal' => $fontDir . '/f57abb89ca055a8fabe4082d95ff458d',
+  ),
 ) ?>
