@@ -1,538 +1,548 @@
-<?php 
-	
-	// All Admin side labels
-	
-	$lang['dashboard_lbl'] = "Dashboard";
-
-	$lang['ord_analysis_lbl'] = "Orders Analysis";
+<?php
 
-	$lang['total_ords_lbl'] = "TOTAL ORDERS";
-	$lang['process_ord_lbl'] = "PROCESS";
-	$lang['delivered_ord_lbl'] = "DELIVERED";
-	$lang['cancellled_ord_lbl'] = "CANCELLED";
+// All Admin side labels
 
-	$lang['tran_analysis_lbl'] = "Transactions Analysis";
-	$lang['total_payment_lbl'] = "TOTAL PAYMENT";
+$lang['dashboard_lbl'] = "Dashboard";
 
-	$lang['status_filter_lbl'] = "Filter by Status";
-	$lang['date_filter_lbl'] = "Filter by Date";
+$lang['ord_analysis_lbl'] = "Orders Analysis";
 
-	$lang['months_of_lbl'] = "MONTHS OF";
+$lang['total_ords_lbl'] = "TOTAL ORDERS";
+$lang['process_ord_lbl'] = "PROCESS";
+$lang['delivered_ord_lbl'] = "DELIVERED";
+$lang['cancellled_ord_lbl'] = "CANCELLED";
 
-	$lang['pending_refund_lbl'] = "Pending Refunds";
+$lang['tran_analysis_lbl'] = "Transactions Analysis";
+$lang['total_payment_lbl'] = "TOTAL PAYMENT";
 
-	// for category labels
-	$lang['cat_sort_lbl'] = "Category";
-	$lang['add_category_lbl'] = "Add Category";
-	$lang['edit_category_lbl'] = "Edit Category";
-	$lang['remove_category_confirm_lbl'] = "Your sub-category and products will be deleted which belong to this !";
-	$lang['category_wise_product_features_lbl'] = "Product Features Category Wise";
-	$lang['color_feature_desc_lbl'] = "If your product is available in multiple colors";
-	$lang['size_feature_desc_lbl'] = "If your product is available in different size";
+$lang['status_filter_lbl'] = "Filter by Status";
+$lang['date_filter_lbl'] = "Filter by Date";
 
-	// for sub category labels
-	$lang['sub_category_lbl'] = "Sub-Categories";
-	$lang['add_sub_category_lbl'] = "Add Sub-Category";
-	$lang['edit_sub_category_lbl'] = "Edit Sub-Category";
-	$lang['sub_category_web_note_lbl'] = "Show Product's List in Sub Category List";
+$lang['months_of_lbl'] = "MONTHS OF";
 
-	// for brands labels
-	$lang['brand_lbl'] = "Brand";
-	$lang['brands_lbl'] = "Brands";
-	$lang['add_brand_lbl'] = "Add Brand";
-	$lang['edit_brand_lbl'] = "Edit Brand";
+$lang['pending_refund_lbl'] = "Pending Refunds";
 
-	// for offer labels
-	$lang['offers_lbl'] = "Offers";
-	$lang['add_offer_lbl'] = "Add Offer";
-	$lang['edit_offer_lbl'] = "Edit Offer";
+// for category labels
+$lang['cat_sort_lbl'] = "Category";
+$lang['add_category_lbl'] = "Add Category";
+$lang['edit_category_lbl'] = "Edit Category";
+$lang['remove_category_confirm_lbl'] = "Your sub-category and products will be deleted which belong to this !";
+$lang['category_wise_product_features_lbl'] = "Product Features Category Wise";
+$lang['color_feature_desc_lbl'] = "If your product is available in multiple colors";
+$lang['size_feature_desc_lbl'] = "If your product is available in different size";
 
-	// for products labels
-	$lang['products_master_lbl'] = "Products Master";
-	$lang['products_lbl'] = "Products";
-	$lang['add_product_lbl'] = "Add Product";
-	$lang['edit_product_lbl'] = "Edit Product";
-	$lang['duplicate_product_lbl'] = "Duplicate Product";
+// for sub category labels
+$lang['sub_category_lbl'] = "Sub-Categories";
+$lang['add_sub_category_lbl'] = "Add Sub-Category";
+$lang['edit_sub_category_lbl'] = "Edit Sub-Category";
+$lang['sub_category_web_note_lbl'] = "Show Product's List in Sub Category List";
 
-	// for banners labels
-	$lang['banners_lbl'] = "Banners";
-	$lang['add_banner_lbl'] = "Add Banners";
-	$lang['edit_banner_lbl'] = "Edit Banners";
+// for brands labels
+$lang['brand_lbl'] = "Brand";
+$lang['brands_lbl'] = "Brands";
+$lang['add_brand_lbl'] = "Add Brand";
+$lang['edit_brand_lbl'] = "Edit Brand";
 
-	// for coupons labels
-	$lang['coupons_lbl'] = "Coupons";
-	$lang['add_coupon_lbl'] = "Add Coupon";
-	$lang['edit_coupon_lbl'] = "Edit Coupon";
+// for offer labels
+$lang['offers_lbl'] = "Offers";
+$lang['add_offer_lbl'] = "Add Offer";
+$lang['edit_offer_lbl'] = "Edit Offer";
 
-	// for users labels
-	$lang['users_lbl'] = "Users";
-	$lang['add_user_lbl'] = "Add User";
-	$lang['edit_user_lbl'] = "Edit User";
+// for products labels
+$lang['products_master_lbl'] = "Products Master";
+$lang['products_lbl'] = "Products";
+$lang['add_product_lbl'] = "Add Product";
+$lang['edit_product_lbl'] = "Edit Product";
+$lang['duplicate_product_lbl'] = "Duplicate Product";
 
-	
-	$lang['orders_lbl'] = "Orders";
-	$lang['ord_list_lbl'] = "Order List";
-	$lang['ord_summary_lbl'] = "Order Summary";
+// for banners labels
+$lang['banners_lbl'] = "Banners";
+$lang['add_banner_lbl'] = "Add Banners";
+$lang['edit_banner_lbl'] = "Edit Banners";
 
-	$lang['transactions_lbl'] = "Transactions";
+// for coupons labels
+$lang['coupons_lbl'] = "Coupons";
+$lang['add_coupon_lbl'] = "Add Coupon";
+$lang['edit_coupon_lbl'] = "Edit Coupon";
 
-	$lang['refunds_lbl'] = "Refunds";
+// for users labels
+$lang['users_lbl'] = "Users";
+$lang['add_user_lbl'] = "Add User";
+$lang['edit_user_lbl'] = "Edit User";
 
-	$lang['refund_details_lbl'] = "Refunds Details";
 
-	$lang['contact_list_lbl'] = "Contact List";
-	$lang['sub_list_lbl'] = "Subjects List";
-	$lang['subjects_lbl'] = "Subject";
-	$lang['add_more_subject_lbl'] = "Add More Subject";
-	$lang['message_lbl'] = "Message";
-	$lang['contact_form_lbl'] = "Contact Form";
+$lang['orders_lbl'] = "Orders";
+$lang['ord_list_lbl'] = "Order List";
+$lang['ord_summary_lbl'] = "Order Summary";
 
-	/* for notification section */
+$lang['transactions_lbl'] = "Transactions";
 
-	$lang['notification_lbl'] = "Notification";
+$lang['refunds_lbl'] = "Refunds";
 
-	$lang['notification_settings_lbl'] = "Notification Settings";
-	$lang['send_notification_lbl'] = "Send Notification";
+$lang['refund_details_lbl'] = "Refunds Details";
 
-	$lang['no_result_found_msg'] = "No result found!";
+$lang['contact_list_lbl'] = "Contact List";
+$lang['sub_list_lbl'] = "Subjects List";
+$lang['subjects_lbl'] = "Subject";
+$lang['add_more_subject_lbl'] = "Add More Subject";
+$lang['message_lbl'] = "Message";
+$lang['contact_form_lbl'] = "Contact Form";
 
-	$lang['select_type_lbl'] = "Select Type";
+/* for notification section */
 
-	$lang['one_signal_id_lbl'] = "OneSignal App ID";
-	$lang['one_signal_rest_key_lbl'] = "OneSignal Rest Key";
+$lang['notification_lbl'] = "Notification";
 
-	$lang['noti_title_lbl'] = "Title";
-	$lang['noti_message_lbl'] = "Message";
+$lang['notification_settings_lbl'] = "Notification Settings";
+$lang['send_notification_lbl'] = "Send Notification";
 
-	$lang['noti_image_lbl'] = "Image";
+$lang['no_result_found_msg'] = "No result found!";
 
-	$lang['external_link_lbl'] = "External Link";
+$lang['select_type_lbl'] = "Select Type";
 
-	$lang['notification_for_lbl'] = "Notification for";
+$lang['one_signal_id_lbl'] = "OneSignal App ID";
+$lang['one_signal_rest_key_lbl'] = "OneSignal Rest Key";
 
-	$lang['notification_confirm_msg'] = "Notification will arrive to all users";
+$lang['noti_title_lbl'] = "Title";
+$lang['noti_message_lbl'] = "Message";
 
-	$lang['noti_category_hint_lbl'] = "To directly open products list of this category when click on notification";
-	$lang['noti_sub_category_hint_lbl'] = "To directly open products list of this sub category when click on notification";
-	$lang['noti_brand_hint_lbl'] = "To directly open products list of this brand when click on notification";
-	$lang['noti_offer_hint_lbl'] = "To directly open products list of this offer when click on notification";
-	$lang['noti_banner_hint_lbl'] = "To directly open products list of this banner when click on notification";
-	$lang['noti_product_hint_lbl'] = "To directly open single product when click on notification";
+$lang['noti_image_lbl'] = "Image";
 
-	/* end notification section */
+$lang['external_link_lbl'] = "External Link";
 
-	$lang['web_settings_lbl'] = "Web Settings";
+$lang['notification_for_lbl'] = "Notification for";
 
-	$lang['android_settings_lbl'] = "App Settings";
+$lang['notification_confirm_msg'] = "Notification will arrive to all users";
 
-	$lang['general_settings_lbl'] = "General Settings";
-	
-	$lang['settings_lbl'] = "Settings";
-	$lang['android_app_lbl'] = "Android App";	
+$lang['noti_category_hint_lbl'] = "To directly open products list of this category when click on notification";
+$lang['noti_sub_category_hint_lbl'] = "To directly open products list of this sub category when click on notification";
+$lang['noti_brand_hint_lbl'] = "To directly open products list of this brand when click on notification";
+$lang['noti_offer_hint_lbl'] = "To directly open products list of this offer when click on notification";
+$lang['noti_banner_hint_lbl'] = "To directly open products list of this banner when click on notification";
+$lang['noti_product_hint_lbl'] = "To directly open single product when click on notification";
 
-	$lang['home_content_lbl'] = "Web/App Home Content";
+/* end notification section */
 
-	$lang['section_title_lbl'] = "Section Title";
-	$lang['for_web_lbl'] = "For Website";
-	$lang['for_app_lbl'] = "For Application";
+$lang['web_settings_lbl'] = "Web Settings";
 
-	$lang['api_urls_lbl'] = "Api Urls";
+$lang['android_settings_lbl'] = "App Settings";
 
-	$lang['general_setting_lbl'] = "General Settings";
-	$lang['page_setting_lbl'] = "Page Settings";
-	$lang['smtp_setting_lbl'] = "SMTP Settings";
-	$lang['add_faq_lbl'] = "Add FAQ";
-	$lang['edit_faq_lbl'] = "Edit FAQ";
+$lang['general_settings_lbl'] = "General Settings";
 
-	$lang['otp_op_lbl'] = "Enable/Disable Email OTP Verification";
-	$lang['otp_op_hint_lbl'] = "Your can enable/disable email OTP verification from both app. and website";
+$lang['settings_lbl'] = "Settings";
+$lang['android_app_lbl'] = "Android App";
 
-	$lang['add_payment_faq_lbl'] = "Add Payment FAQ";
-	$lang['edit_payment_faq_lbl'] = "Edit Payment FAQ";
+$lang['home_content_lbl'] = "Web/App Home Content";
+$lang['shipping_content_lbl'] = "Shipping";
 
-	// Web Settings page labels
 
-	$lang['site_nm_lbl'] = "Site Name";
-	$lang['site_desc_lbl'] = "Site Description";
-	$lang['site_keyword_lbl'] = "Site Keywords";
-	$lang['site_keyword_place_lbl'] = "Enter Site keywords for SEO";
+$lang['section_title_lbl'] = "Section Title";
+$lang['for_web_lbl'] = "For Website";
+$lang['for_app_lbl'] = "For Application";
 
-	$lang['site_logo1_lbl'] = "Site Logo-1";
-	$lang['site_logo2_lbl'] = "Site Logo-2";
-	$lang['site_logo2_note_lbl'] = "Image Background must be WHITE";
+$lang['api_urls_lbl'] = "Api Urls";
 
-	$lang['site_favicon_lbl'] = "Site Favicon";
+$lang['general_setting_lbl'] = "General Settings";
+$lang['page_setting_lbl'] = "Page Settings";
+$lang['smtp_setting_lbl'] = "SMTP Settings";
+$lang['add_faq_lbl'] = "Add FAQ";
+$lang['edit_faq_lbl'] = "Edit FAQ";
 
+$lang['otp_op_lbl'] = "Enable/Disable Email OTP Verification";
+$lang['otp_op_hint_lbl'] = "Your can enable/disable email OTP verification from both app. and website";
 
-	$lang['libraries_load_from_lbl'] = "External Libraries From";
-	$lang['local_lbl'] = "Local";
-	$lang['cdn_lbl'] = "CDN";
-	$lang['cdn_recommended_lbl'] = "CDN (recommended)";
-	$lang['local_hint_lbl'] = "Web related libraries call from server";
-	$lang['cdn_hint_lbl'] = "CDN for web related libraries to speed up your websites";
+$lang['add_payment_faq_lbl'] = "Add Payment FAQ";
+$lang['edit_payment_faq_lbl'] = "Edit Payment FAQ";
 
-	$lang['header_code_lbl'] = "Header Code";
-	$lang['header_code_place_lbl'] = "Custom CSS or JS Script";
+// Web Settings page labels
 
-	$lang['footer_code_lbl'] = "Footer Code";
-	$lang['footer_code_place_lbl'] = "Custom CSS or JS Script";
+$lang['site_nm_lbl'] = "Site Name";
+$lang['site_desc_lbl'] = "Site Description";
+$lang['site_keyword_lbl'] = "Site Keywords";
+$lang['site_keyword_place_lbl'] = "Enter Site keywords for SEO";
 
-	$lang['copyright_txt_lbl'] = "Copyright Text";
+$lang['site_logo1_lbl'] = "Site Logo-1";
+$lang['site_logo2_lbl'] = "Site Logo-2";
+$lang['site_logo2_note_lbl'] = "Image Background must be WHITE";
 
-		/*------ Page Settings -------*/
+$lang['site_favicon_lbl'] = "Site Favicon";
 
-		$lang['google_recaptcha_lbl'] = "Google reCAPTCHA";
 
-		$lang['ads_place_lbl'] = "Ads Places";
-		$lang['about_us_lbl'] = "About Us";
-		$lang['contact_us_lbl'] = "Contact Us";
-		$lang['faq_lbl'] = "FAQ";
-		$lang['term_of_use_lbl'] = "Terms Of Use";
-		$lang['privacy_lbl'] = "Privacy";
-		$lang['refund_return_policy_lbl'] = "Refund & Reture Policy";
-		$lang['cancellation_lbl'] = "Cancellation";
-		$lang['payments_lbl'] = "Payments";
+$lang['libraries_load_from_lbl'] = "External Libraries From";
+$lang['local_lbl'] = "Local";
+$lang['cdn_lbl'] = "CDN";
+$lang['cdn_recommended_lbl'] = "CDN (recommended)";
+$lang['local_hint_lbl'] = "Web related libraries call from server";
+$lang['cdn_hint_lbl'] = "CDN for web related libraries to speed up your websites";
 
-		/*------- End page settings -------*/
+$lang['header_code_lbl'] = "Header Code";
+$lang['header_code_place_lbl'] = "Custom CSS or JS Script";
 
-		/*--------Home page settings-------*/
+$lang['footer_code_lbl'] = "Footer Code";
+$lang['footer_code_place_lbl'] = "Custom CSS or JS Script";
 
-		$lang['home_setting_note_lbl'] = "Here you can manage your home content for web/app. How many things will show or not in home.";
+$lang['web_address_lbl'] = "Shop Address";
+$lang['web_address_place_lbl'] = "Address";
+$lang['web_address_city_lbl'] = "City";
+$lang['web_address_province_lbl'] = "Province";
+$lang['web_address_subdistric_lbl'] = "Sub District";
+$lang['web_address_distric_lbl'] = "District";
+$lang['web_address_pcode_lbl'] = "Postal Code";
 
-		$lang['home_slider_op_lbl'] = "Show Slider On Home";
-		$lang['home_brand_op_lbl'] = "Show Brand List On Home";
-		$lang['home_category_op_lbl'] = "Show Category List On Home";
-		$lang['home_offer_op_lbl'] = "Show Offer List On Home";
-		$lang['home_hot_deal_op_lbl'] = "Show Today Deal List On Home";
-		$lang['home_latest_op_lbl'] = "Show Latest Products On Home";
-		$lang['home_top_rated_op_lbl'] = "Show Top Rated Products On Home";
-		$lang['home_top_rated_op_hint_lbl'] = "Minimum (3 Default) Rate required to show products in this list. You can change this minimum from beside input)";
-		$lang['home_cat_wise_op_lbl'] = "Show Category Wise Products On Home";
-		$lang['home_recent_op_lbl'] = "Show Recent Viewed Products On Home";
-		
-		/*----------end home page----------*/
+$lang['copyright_txt_lbl'] = "Copyright Text";
 
-	// End web settings page labels
+/*------ Page Settings -------*/
 
-	// Ads Places Tab Labels
+$lang['google_recaptcha_lbl'] = "Google reCAPTCHA";
 
-	$lang['home_page_ads_lbl'] = "Home Page Ads (Banner Ads Size is Width:1170, Height:151)";
-	$lang['banner_ads_status_lbl'] = "Banner Ad Status";
-	$lang['banner_ads_code_lbl'] = "Banner Ad Code";
+$lang['ads_place_lbl'] = "Ads Places";
+$lang['about_us_lbl'] = "About Us";
+$lang['contact_us_lbl'] = "Contact Us";
+$lang['faq_lbl'] = "FAQ";
+$lang['term_of_use_lbl'] = "Terms Of Use";
+$lang['privacy_lbl'] = "Privacy";
+$lang['refund_return_policy_lbl'] = "Refund & Reture Policy";
+$lang['cancellation_lbl'] = "Cancellation";
+$lang['payments_lbl'] = "Payments";
 
-	$lang['product_page_ads_lbl'] = "Product Page Ads (Banner Ads Size is Width:300)";
-	$lang['ads_status_lbl'] = "Ad Status";
-	$lang['ads_code_lbl'] = "Ad Code";
+/*------- End page settings -------*/
 
-	// End ads places tab
+/*--------Home page settings-------*/
 
+$lang['home_setting_note_lbl'] = "Here you can manage your home content for web/app. How many things will show or not in home.";
 
-	// General Settings Tab Labels
+$lang['home_slider_op_lbl'] = "Show Slider On Home";
+$lang['home_brand_op_lbl'] = "Show Brand List On Home";
+$lang['home_category_op_lbl'] = "Show Category List On Home";
+$lang['home_offer_op_lbl'] = "Show Offer List On Home";
+$lang['home_hot_deal_op_lbl'] = "Show Today Deal List On Home";
+$lang['home_latest_op_lbl'] = "Show Latest Products On Home";
+$lang['home_top_rated_op_lbl'] = "Show Top Rated Products On Home";
+$lang['home_top_rated_op_hint_lbl'] = "Minimum (3 Default) Rate required to show products in this list. You can change this minimum from beside input)";
+$lang['home_cat_wise_op_lbl'] = "Show Category Wise Products On Home";
+$lang['home_recent_op_lbl'] = "Show Recent Viewed Products On Home";
 
-	$lang['order_email_lbl'] = "Order Notification Email";
-	$lang['order_email_note_lbl'] = "Note: This email is required when users placed new order.";
+/*----------end home page----------*/
 
-	$lang['contact_email_lbl'] = "Email";
-	$lang['contact_email_note_lbl'] = "Note: This email is required when users contact request.";
+// End web settings page labels
 
-	$lang['currency_code_lbl'] = "Currency Code";
-	$lang['currency_sign_lbl'] = "Currency Sign";
+// Ads Places Tab Labels
 
-	$lang['admin_title_lbl'] = "Admin Title";
-	$lang['admin_logo_lbl'] = "Admin Logo";
-	$lang['admin_favicon_lbl'] = "Admin Favicon";
+$lang['home_page_ads_lbl'] = "Home Page Ads (Banner Ads Size is Width:1170, Height:151)";
+$lang['banner_ads_status_lbl'] = "Banner Ad Status";
+$lang['banner_ads_code_lbl'] = "Banner Ad Code";
 
-	$lang['author_lbl'] = "Author";
-	$lang['app_description_lbl'] = "App Description";
-	$lang['app_version_lbl'] = "App Version";
-	$lang['contact_lbl'] = "Contact";
-	$lang['website_lbl'] = "Website";
-	$lang['developed_by_lbl'] = "Developed By";
+$lang['product_page_ads_lbl'] = "Product Page Ads (Banner Ads Size is Width:300)";
+$lang['ads_status_lbl'] = "Ad Status";
+$lang['ads_code_lbl'] = "Ad Code";
 
-	$lang['social_media_lbl'] = "Social Media";
-	$lang['facebook_lbl'] = "Facebook";
-	$lang['twitter_lbl'] = "Twitter";
-	$lang['youtube_lbl'] = "YouTube";
-	$lang['instagram_lbl'] = "Instagram";
+// End ads places tab
 
-	// End general settings tab labels
 
-	// Payment Tab Labels
+// General Settings Tab Labels
 
-	$lang['paypal_payment_mode_lbl'] = "Paypal Payment Mode";
-	$lang['paypal_sendbox_mode_lbl'] = "Sandbox";
-	$lang['paypal_live_mode_lbl'] = "Live";
+$lang['order_email_lbl'] = "Order Notification Email";
+$lang['order_email_note_lbl'] = "Note: This email is required when users placed new order.";
 
-	$lang['paypal_client_id_lbl'] = "Client ID";
-	$lang['paypal_mode_note_lbl'] = "Note: This must be changed based on Paypal Payment Mode";
+$lang['contact_email_lbl'] = "Email";
+$lang['contact_email_note_lbl'] = "Note: This email is required when users contact request.";
 
-	$lang['publisher_key_lbl'] = "Publishable key";
+$lang['currency_code_lbl'] = "Currency Code";
+$lang['currency_sign_lbl'] = "Currency Sign";
 
-	$lang['secret_key_lbl'] = "Secret key";
+$lang['admin_title_lbl'] = "Admin Title";
+$lang['admin_logo_lbl'] = "Admin Logo";
+$lang['admin_favicon_lbl'] = "Admin Favicon";
 
-	$lang['key_id_lbl'] = "Razorpay Key ID";
+$lang['author_lbl'] = "Author";
+$lang['app_description_lbl'] = "App Description";
+$lang['app_version_lbl'] = "App Version";
+$lang['contact_lbl'] = "Contact";
+$lang['website_lbl'] = "Website";
+$lang['developed_by_lbl'] = "Developed By";
 
-	$lang['key_secret_lbl'] = "Razorpay Key Secret";
+$lang['social_media_lbl'] = "Social Media";
+$lang['facebook_lbl'] = "Facebook";
+$lang['twitter_lbl'] = "Twitter";
+$lang['youtube_lbl'] = "YouTube";
+$lang['instagram_lbl'] = "Instagram";
 
-	$lang['g_captcha_site_key_lbl'] = "Site Key";
+// End general settings tab labels
 
-	$lang['g_captcha_secret_key_lbl'] = "Secret key";
+// Payment Tab Labels
 
-	// End payment tab labels
+$lang['paypal_payment_mode_lbl'] = "Paypal Payment Mode";
+$lang['paypal_sendbox_mode_lbl'] = "Sandbox";
+$lang['paypal_live_mode_lbl'] = "Live";
 
-	// SMTP Settings Tab Labels
+$lang['paypal_client_id_lbl'] = "Client ID";
+$lang['paypal_mode_note_lbl'] = "Note: This must be changed based on Paypal Payment Mode";
 
-	$lang['smtp_library_lbl'] = "SMTP Library";
-	$lang['smtp_library_mailer_lbl'] = "PHP Mailer";
-	$lang['smtp_library_ci_lbl'] = "Codeigniter Email";
+$lang['publisher_key_lbl'] = "Publishable key";
 
-	$lang['smtp_type_lbl'] = "SMTP Type";
+$lang['secret_key_lbl'] = "Secret key";
 
-	$lang['gmail_smtp_lbl'] = "Gmail SMTP";
-	$lang['server_smtp_lbl'] = "Server SMTP";
+$lang['key_id_lbl'] = "Razorpay Key ID";
 
-	$lang['smtp_host_lbl'] = "SMTP Host";
-	$lang['smtp_secure_lbl'] = "SMTPSecure";
-	$lang['smtp_port_no_lbl'] = "Port No.";
+$lang['key_secret_lbl'] = "Razorpay Key Secret";
 
-	$lang['smtp_note_point1_lbl'] = "Please check PHP document for Mail Configuration. If your domain name: www.example.com then Create mail id info@examaple.com same like your domain name and add.";
+$lang['g_captcha_site_key_lbl'] = "Site Key";
 
-	$lang['smtp_note_point2_lbl'] = "This configure is required otherwise forgot email or mail feature will not be work.";
+$lang['g_captcha_secret_key_lbl'] = "Secret key";
 
-	// End smtp settings tab labels
+// End payment tab labels
 
+// SMTP Settings Tab Labels
 
-	// Top Header labels with profile
+$lang['smtp_library_lbl'] = "SMTP Library";
+$lang['smtp_library_mailer_lbl'] = "PHP Mailer";
+$lang['smtp_library_ci_lbl'] = "Codeigniter Email";
 
-	$lang['visit_web_lbl'] = "Visit Website";
+$lang['smtp_type_lbl'] = "SMTP Type";
 
-	$lang['new_ord_lbl'] = "New Order";
-	$lang['ordering_lbl'] = "Ordering";
-	$lang['no_new_ord_lbl'] = "No New Orders!";
+$lang['gmail_smtp_lbl'] = "Gmail SMTP";
+$lang['server_smtp_lbl'] = "Server SMTP";
 
-	$lang['admin_lbl'] = "Admin";
+$lang['smtp_host_lbl'] = "SMTP Host";
+$lang['smtp_secure_lbl'] = "SMTPSecure";
+$lang['smtp_port_no_lbl'] = "Port No.";
 
-	$lang['profile_lbl'] = "Profile";
+$lang['smtp_note_point1_lbl'] = "Please check PHP document for Mail Configuration. If your domain name: www.example.com then Create mail id info@examaple.com same like your domain name and add.";
 
-	$lang['backup_db_lbl'] = "Backup Database";
+$lang['smtp_note_point2_lbl'] = "This configure is required otherwise forgot email or mail feature will not be work.";
 
-	// End top header labels
+// End smtp settings tab labels
 
-	$lang['note_lbl'] = "Note";
 
-	$lang['add_new_lbl'] = "Add New";
+// Top Header labels with profile
 
-	$lang['enable_lbl'] = "Enable";
+$lang['visit_web_lbl'] = "Visit Website";
 
-	$lang['disable_lbl'] = "Disable";
+$lang['new_ord_lbl'] = "New Order";
+$lang['ordering_lbl'] = "Ordering";
+$lang['no_new_ord_lbl'] = "No New Orders!";
 
-	$lang['edit_lbl'] = "Edit";
+$lang['admin_lbl'] = "Admin";
 
-	$lang['delete_lbl'] = "Delete";
+$lang['profile_lbl'] = "Profile";
 
-	$lang['update_lbl'] = "Update";
+$lang['backup_db_lbl'] = "Backup Database";
 
-	$lang['deleted_lbl'] = "Deleted";
-	$lang['deleted_data_lbl'] = "Your data has been deleted.";
+// End top header labels
 
-	$lang['view_lbl'] = "Views";
+$lang['note_lbl'] = "Note";
 
-	$lang['rating_lbl'] = "Ratings";
+$lang['add_new_lbl'] = "Add New";
 
-	$lang['print_lbl'] = "Print";
+$lang['enable_lbl'] = "Enable";
 
-	$lang['default_lbl'] = "Default";
+$lang['disable_lbl'] = "Disable";
 
-	$lang['export_excel_lbl'] = "Export Excel";
+$lang['edit_lbl'] = "Edit";
 
-	$lang['mode_lbl'] = "Mode";
+$lang['delete_lbl'] = "Delete";
 
-	$lang['payment_id_lbl'] = "Payment ID";
+$lang['update_lbl'] = "Update";
 
-	$lang['refund_amt_lbl'] = "Refund Amt.";	
+$lang['deleted_lbl'] = "Deleted";
+$lang['deleted_data_lbl'] = "Your data has been deleted.";
 
-	$lang['last_updated_lbl'] = "Last Updated";
+$lang['view_lbl'] = "Views";
 
-	$lang['date_lbl'] = "Date";
+$lang['rating_lbl'] = "Ratings";
 
-	$lang['default_refund_acc_lbl'] = "Default Refund Account";
+$lang['print_lbl'] = "Print";
 
-	$lang['review_images_lbl'] = "Product Review Images";
+$lang['default_lbl'] = "Default";
 
-	$lang['remove_lbl'] = "Remove";
+$lang['export_excel_lbl'] = "Export Excel";
 
-	$lang['show_on_home_lbl'] = "Show on home";
+$lang['mode_lbl'] = "Mode";
 
-	$lang['remove_to_home_lbl'] = "Remove home";
+$lang['payment_id_lbl'] = "Payment ID";
 
-	$lang['previous_lbl'] = "Previous";
-	$lang['next_lbl'] = "Next";
+$lang['refund_amt_lbl'] = "Refund Amt.";
 
-	$lang['sales_lbl'] = "Sales";
-	$lang['user_lbl'] = "User";
-	$lang['amount_lbl'] = "Amount";
-	$lang['status_lbl'] = "Status";
-	$lang['register_on_lbl'] = "Register On";
+$lang['last_updated_lbl'] = "Last Updated";
 
+$lang['date_lbl'] = "Date";
 
-	$lang['top_sales_products_lbl'] = "Top Selling Products";
-	$lang['todays_ord_lbl'] = "Today's Orders";
+$lang['default_refund_acc_lbl'] = "Default Refund Account";
 
-	$lang['duplicate_lbl'] = "Make Duplicate";
+$lang['review_images_lbl'] = "Product Review Images";
 
-	$lang['select_all_lbl'] = "Select All";
+$lang['remove_lbl'] = "Remove";
 
-	$lang['delete_all_lbl'] = "Delete All";
+$lang['show_on_home_lbl'] = "Show on home";
 
-	$lang['action_lbl'] = "Action";
+$lang['remove_to_home_lbl'] = "Remove home";
 
-	$lang['set_todays_deal_lbl'] = "Set to todays Deal";
-	$lang['remove_todays_deal_lbl'] = "Remove to todays Deal";
-	
+$lang['previous_lbl'] = "Previous";
+$lang['next_lbl'] = "Next";
 
-	$lang['recommended_resolution_lbl'] = "Recommended resolution";
-	$lang['we_recommended_img_lbl'] = "We recommended to upload jpg, jpeg, JPG, JPEG image files for best compression ratio";
-	$lang['recommended_img_lbl'] = "Recommended jpg, jpeg, JPG, JPEG image files for best compression ratio";
+$lang['sales_lbl'] = "Sales";
+$lang['user_lbl'] = "User";
+$lang['amount_lbl'] = "Amount";
+$lang['status_lbl'] = "Status";
+$lang['register_on_lbl'] = "Register On";
 
-	$lang['accept_img_files_lbl'] = "Accept png, jpg, jpeg, PNG, JPG, JPEG image files";
-	
-	$lang['search_lbl'] = "Search here...";	
 
-	$lang['successfully_lbl'] = "Successfully";
+$lang['top_sales_products_lbl'] = "Top Selling Products";
+$lang['todays_ord_lbl'] = "Today's Orders";
 
-	$lang['created_on_lbl'] = "Created On";
+$lang['duplicate_lbl'] = "Make Duplicate";
 
-	$lang['wishlist_lbl'] = "Wishlist";
-	$lang['cart_lbl'] = "My Cart";
-	$lang['img_lbl'] = "Image";
-	$lang['product_lbl'] = "Product";
+$lang['select_all_lbl'] = "Select All";
 
-	$lang['user_nm_lbl'] = "User Name";
-	$lang['user_phone_lbl'] = "User Phone";
-	$lang['user_email_lbl'] = "User Email";
+$lang['delete_all_lbl'] = "Delete All";
 
-	$lang['page_title_lbl'] = "Page Title";
-	$lang['content_lbl'] = "Content";
-	$lang['page_status_lbl'] = "Page Status";
+$lang['action_lbl'] = "Action";
 
-	$lang['question_lbl'] = "Question";
-	$lang['question_place_lbl'] = "Enter question";
-	$lang['answer_lbl'] = "Answer";
-	$lang['answer_place_lbl'] = "Enter answer";
+$lang['set_todays_deal_lbl'] = "Set to todays Deal";
+$lang['remove_todays_deal_lbl'] = "Remove to todays Deal";
 
-	$lang['add_more_lbl'] = "Add More";
 
-	$lang['min_rate_lbl'] = "Minimum Rate";
+$lang['recommended_resolution_lbl'] = "Recommended resolution";
+$lang['we_recommended_img_lbl'] = "We recommended to upload jpg, jpeg, JPG, JPEG image files for best compression ratio";
+$lang['recommended_img_lbl'] = "Recommended jpg, jpeg, JPG, JPEG image files for best compression ratio";
 
+$lang['accept_img_files_lbl'] = "Accept png, jpg, jpeg, PNG, JPG, JPEG image files";
 
-	// End
+$lang['search_lbl'] = "Search here...";
 
-	// Footer context label
+$lang['successfully_lbl'] = "Successfully";
 
-	$lang['footer_context_lbl'] = 'Copyright © 2020 <a href="https://www.viaviweb.com/" target="_blank">Viaviweb.com.</a> All Rights Reserved.';	
+$lang['created_on_lbl'] = "Created On";
 
-	// End footer
+$lang['wishlist_lbl'] = "Wishlist";
+$lang['cart_lbl'] = "My Cart";
+$lang['img_lbl'] = "Image";
+$lang['product_lbl'] = "Product";
 
+$lang['user_nm_lbl'] = "User Name";
+$lang['user_phone_lbl'] = "User Phone";
+$lang['user_email_lbl'] = "User Email";
 
-	// for verification page
+$lang['page_title_lbl'] = "Page Title";
+$lang['content_lbl'] = "Content";
+$lang['page_status_lbl'] = "Page Status";
 
-	$lang['verify_purchase_lbl'] = "Verify Purchase";
+$lang['question_lbl'] = "Question";
+$lang['question_place_lbl'] = "Enter question";
+$lang['answer_lbl'] = "Answer";
+$lang['answer_place_lbl'] = "Enter answer";
 
-	$lang['website_purchase_lbl'] = "Website";
+$lang['add_more_lbl'] = "Add More";
 
-	$lang['android_app_purchase_lbl'] = "Android App";
+$lang['min_rate_lbl'] = "Minimum Rate";
 
-	$lang['envato_username_lbl'] = "Envato Username";
-	$lang['envato_username_hint_lbl'] = "https://codecanyon.net/user/viaviwebtech(viaviwebtech is username)";
 
-	$lang['envato_purchase_code_lbl'] = "Envato Purchase Code";
-	$lang['envato_purchase_code_hint_lbl'] = "(Where Is My Purchase Code?)";
+// End
 
-	$lang['android_package_lbl'] = "Android Package Name";
-	$lang['android_package_hint_lbl'] = "(More info in Android Doc)";
+// Footer context label
 
-	$lang['envato_purchase_code_wrong_lbl'] = "Envato purchase code is invalid!";
-	$lang['envato_buyer_wrong_lbl'] = "Envato username is invalid!";
-	$lang['envato_verify_success_lbl'] = "Envato purchase verification successfully done.";
+$lang['footer_context_lbl'] = 'Copyright © 2020 <a href="https://www.viaviweb.com/" target="_blank">Viaviweb.com.</a> All Rights Reserved.';
 
-	// end verification page
+// End footer
 
-	
-	// All kind of messages
 
-	$lang['add_msg'] = "Added successfully.";
+// for verification page
 
-	$lang['add_error'] = "Error in adding data !!";
+$lang['verify_purchase_lbl'] = "Verify Purchase";
 
-	$lang['update_msg'] = "Updated successfully.";
+$lang['website_purchase_lbl'] = "Website";
 
-	$lang['update_error'] = "Error in updating data !!";
+$lang['android_app_purchase_lbl'] = "Android App";
 
-	$lang['delete_msg'] = "Delete successfully.";
+$lang['envato_username_lbl'] = "Envato Username";
+$lang['envato_username_hint_lbl'] = "https://codecanyon.net/user/viaviwebtech(viaviwebtech is username)";
 
-	$lang['enable_msg'] = "Enable successfully.";
+$lang['envato_purchase_code_lbl'] = "Envato Purchase Code";
+$lang['envato_purchase_code_hint_lbl'] = "(Where Is My Purchase Code?)";
 
-	$lang['disable_msg'] = "Disable successfully.";
+$lang['android_package_lbl'] = "Android Package Name";
+$lang['android_package_hint_lbl'] = "(More info in Android Doc)";
 
-	$lang['action_confirm_msg'] = "Do you really want to perform?";
+$lang['envato_purchase_code_wrong_lbl'] = "Envato purchase code is invalid!";
+$lang['envato_buyer_wrong_lbl'] = "Envato username is invalid!";
+$lang['envato_verify_success_lbl'] = "Envato purchase verification successfully done.";
 
-	$lang['action_done_msg'] = "You have successfully done";
+// end verification page
 
-	$lang['no_record_select_msg'] = "No record selected !";
 
-	$lang['today_enable_msg'] = "Product is today's deal !!";
+// All kind of messages
 
-	$lang['today_disable_msg'] = "Product removed from today's deal !!";
+$lang['add_msg'] = "Added successfully.";
 
-	$lang['notification_msg'] = "Notification send successfully.";
+$lang['add_error'] = "Error in adding data !!";
 
-	$lang['input_required'] = "Enter all required fields !!";
+$lang['update_msg'] = "Updated successfully.";
 
-	$lang['input_invalid'] = "Entered data is invalid to this field !!";	
+$lang['update_error'] = "Error in updating data !!";
 
-	$lang['register_success'] = "Registration successfully done.";
+$lang['delete_msg'] = "Delete successfully.";
 
-	$lang['register_failed'] = "Registration is failed !!";
+$lang['enable_msg'] = "Enable successfully.";
 
-	$lang['category_show'] = "Now category show on home page.";
+$lang['disable_msg'] = "Disable successfully.";
 
-	$lang['category_remove'] = "Category is remove from home page.";
+$lang['action_confirm_msg'] = "Do you really want to perform?";
 
-	$lang['bank_remove'] = "Bank data is successfully deleted.";
+$lang['action_done_msg'] = "You have successfully done";
 
-	$lang['something_went_wrong_err'] = "Something went to wrong!";
+$lang['no_record_select_msg'] = "No record selected !";
 
-	$lang['login_success'] = "Login successfully";
+$lang['today_enable_msg'] = "Product is today's deal !!";
 
-	$lang['logout_success'] = "Logout successfully";
+$lang['today_disable_msg'] = "Product removed from today's deal !!";
 
-	$lang['login_tab_lbl'] = "Web Login Status";
+$lang['notification_msg'] = "Notification send successfully.";
 
-	$lang['google_login_lbl'] = "Google Login";
+$lang['input_required'] = "Enter all required fields !!";
 
-	$lang['fb_login_lbl'] = "Facebook Login";
+$lang['input_invalid'] = "Entered data is invalid to this field !!";
 
-	$lang['fb_app_id_lbl'] = "App ID";
+$lang['register_success'] = "Registration successfully done.";
 
-	$lang['fb_app_secret_lbl'] = "App Secret";
+$lang['register_failed'] = "Registration is failed !!";
 
-	$lang['user_type_lbl'] = "User Type";
-	$lang['register_platform_lbl'] = "Platform";
+$lang['category_show'] = "Now category show on home page.";
 
-	$lang['per_off_lbl'] = "% OFF";
+$lang['category_remove'] = "Category is remove from home page.";
 
-	$lang['billing_shipping_section_lbl'] = "Billing & Shipping Details";
+$lang['bank_remove'] = "Bank data is successfully deleted.";
 
-	$lang['cancel_by_admin_lbl'] = "Cancel by Admin";
+$lang['something_went_wrong_err'] = "Something went to wrong!";
 
-	$lang['smtp_check_email_lbl'] = "Check Mail Configuration";
-	$lang['smtp_check_email_sort_lbl'] = "Send test mail to your email to check Email functionality work or not.";
+$lang['login_success'] = "Login successfully";
 
-	$lang['smtp_check_email_demo_msg_lbl'] = "This Is The Demo Mail To Check SMTP Configuration.";
+$lang['logout_success'] = "Logout successfully";
 
-	$lang['mail_send_msg'] = "Mail Sent!";
-	$lang['mail_send_success_msg'] = "Mail sent successfully.";
+$lang['login_tab_lbl'] = "Web Login Status";
 
-	$lang['mail_send_err_msg'] = "Mail not sent!";
+$lang['google_login_lbl'] = "Google Login";
 
-	$lang['click_here_login_lbl'] = "Click here to Login";
+$lang['fb_login_lbl'] = "Facebook Login";
+
+$lang['fb_app_id_lbl'] = "App ID";
+
+$lang['fb_app_secret_lbl'] = "App Secret";
+
+$lang['user_type_lbl'] = "User Type";
+$lang['register_platform_lbl'] = "Platform";
+
+$lang['per_off_lbl'] = "% OFF";
+
+$lang['billing_shipping_section_lbl'] = "Billing & Shipping Details";
+
+$lang['cancel_by_admin_lbl'] = "Cancel by Admin";
+
+$lang['smtp_check_email_lbl'] = "Check Mail Configuration";
+$lang['smtp_check_email_sort_lbl'] = "Send test mail to your email to check Email functionality work or not.";
+
+$lang['smtp_check_email_demo_msg_lbl'] = "This Is The Demo Mail To Check SMTP Configuration.";
+
+$lang['mail_send_msg'] = "Mail Sent!";
+$lang['mail_send_success_msg'] = "Mail sent successfully.";
+
+$lang['mail_send_err_msg'] = "Mail not sent!";
+
+$lang['click_here_login_lbl'] = "Click here to Login";

@@ -21,8 +21,8 @@ $this->session->unset_userdata($array_items);
   <meta charset="utf-8">
   <meta name="author" content="">
   <title> <?php if (isset($current_page)) {
-    echo $current_page . ' | ';
-  } ?><?php echo APP_NAME; ?></title>
+            echo $current_page . ' | ';
+          } ?><?php echo APP_NAME; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="<?= base_url('assets/images/') . APP_FAVICON ?>" />
 
@@ -30,7 +30,9 @@ $this->session->unset_userdata($array_items);
   <meta name="keywords" content="<?= $this->db->get_where('tbl_web_settings', array('id' => '1'))->row()->site_keywords ?>">
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="<?php if (isset($current_page)) { echo $current_page . ' | '; } ?><?php echo APP_NAME; ?>" />
+  <meta property="og:title" content="<?php if (isset($current_page)) {
+                                        echo $current_page . ' | ';
+                                      } ?><?php echo APP_NAME; ?>" />
   <meta property="og:description" content="<?= $this->db->get_where('tbl_web_settings', array('id' => '1'))->row()->site_description ?>" />
   <meta property="og:image" itemprop="image" content="<?= $sharing_wp_img ?>" />
   <meta property="og:url" content="<?= current_url() ?>" />
@@ -52,12 +54,13 @@ $this->session->unset_userdata($array_items);
 
   <?php
   if ($this->db->get_where('tbl_web_settings', array('id' => '1'))->row()->libraries_load_from == 'local') {
-    ?>
+  ?>
     <link rel="stylesheet" href="<?= base_url('assets/site_assets/css/animate.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site_assets/css/normalize.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site_assets/css/jquery-ui.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site_assets/css/owl.carousel.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site_assets/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/site_assets/css/jquery-ui1.min.css') ?>">
 
     <script src="<?= base_url('assets/site_assets/js/vendor/jquery-3.4.1.min.js') ?>"></script>
 
@@ -73,7 +76,7 @@ $this->session->unset_userdata($array_items);
     <!-- End CDN Files -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <?php
+  <?php
   }
   ?>
 
@@ -97,6 +100,7 @@ $this->session->unset_userdata($array_items);
       z-index: 1;
       margin: 5px;
     }
+
     #cartForm .radio_btn {
       margin: 3px 4px 3px 0;
       text-align: center;
@@ -166,11 +170,11 @@ $this->session->unset_userdata($array_items);
                     <li>
                       <?php
                       if (!check_user_login()) {
-                        ?>
+                      ?>
                         <a href="javascript:void(0)">
                           <i class="ion-android-person"></i>
                         </a>
-                        <?php
+                      <?php
                       } else {
 
                         $user_img = $this->db->get_where('tbl_users', array('id' => $this->session->userdata('user_id')))->row()->user_image;
@@ -184,7 +188,7 @@ $this->session->unset_userdata($array_items);
                           $user_img = base_url() . $ci->_create_thumbnail('assets/images/users/', $thumb_img_nm, $user_img, 200, 200);
                         }
 
-                        ?>
+                      ?>
                         <?php
                         if ($this->session->userdata('user_type') == 'Google') {
                           echo '<img src="' . base_url('assets/img/google-logo.png') . '" class="social_img">';
@@ -194,13 +198,13 @@ $this->session->unset_userdata($array_items);
                         ?>
                         <a href="javascript:void(0)" style="background-image: url('<?= $user_img ?>');background-size: cover;">
                         </a>
-                        <?php
+                      <?php
                       }
                       ?>
                       <ul class="cart-dropdown user_login">
                         <?php
                         if (!check_user_login()) {
-                          ?>
+                        ?>
                           <li class="cart-button"> <a href="<?php echo site_url('login-register'); ?>" class="button2"><?= $this->lang->line('login_register_btn') ?></a>
                           </li>
                         <?php } else { ?>
@@ -231,7 +235,7 @@ $this->session->unset_userdata($array_items);
                               $img_file = $ci->_create_thumbnail('assets/images/products/', $thumb_img_nm, $value->featured_image, 50, 50);
 
 
-                              ?>
+                        ?>
                               <li class="cart-item">
                                 <div class="cart-img" style="width: auto"> <a href=""><img src="<?= base_url() . $img_file ?>" alt="" style="width: 68px;height: 68px"></a> </div>
                                 <div class="cart-content">
@@ -272,13 +276,13 @@ $this->session->unset_userdata($array_items);
 
                             <li class="cart-button"> <a href="<?php echo site_url('my-cart'); ?>" class="button2"><?= $this->lang->line('view_cart_btn') ?></a> <a href="<?php echo site_url('checkout'); ?>" class="button2"><?= $this->lang->line('checkout_btn') ?></a>
                             </li>
-                            <?php
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <li class="cart-item text-center" style="padding: 15px">
                               <h4 style="font-weight: 500"><i class="ion-android-cart"></i> <?= $this->lang->line('empty_cart_lbl') ?></h4>
                             </li>
-                            <?php
+                          <?php
                           }
                         }   // end of session check
                         else {
@@ -286,7 +290,7 @@ $this->session->unset_userdata($array_items);
                           <li class="cart-item text-center" style="padding: 15px">
                             <h4 style="font-weight: 500"><?= $this->lang->line('login_status_lbl') ?></h4>
                           </li>
-                          <?php
+                        <?php
                         }
                         ?>
 
@@ -306,188 +310,188 @@ $this->session->unset_userdata($array_items);
                   <nav>
                     <ul>
                       <li <?php if (isset($current_page) && $current_page == $this->lang->line('home_lbl')) {
-                        echo 'class="active"';
-                      } ?>><a href="<?= base_url('/') ?>"><?= $this->lang->line('home_lbl') ?></a></li>
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/') ?>"><?= $this->lang->line('home_lbl') ?></a></li>
                       <li <?php if (isset($current_page) && $current_page == $this->lang->line('category_lbl')) {
-                        echo 'class="active"';
-                      } ?>><a href="<?= base_url('/category') ?>"><?= $this->lang->line('category_lbl') ?></a>
-                      <ul>
-                        <?php
-                        $n = 1;
-                        foreach ($ci->get_category() as $key => $row) {
-
-                          $counts = $ci->getCount('tbl_sub_category', array('category_id' => $row->id, 'status' => '1'));
-
-                          if ($counts > 0) {
-                            $url = base_url('category/' . $row->category_slug);
-                          } else {
-                            $url = base_url('category/products/' . $row->id);
-                          }
-
-                          ?>
-                          <li>
-                            <a href="<?= $url ?>">
-                              <?php
-                              if (strlen($row->category_name) > 30) {
-                                echo substr(stripslashes($row->category_name), 0, 30) . '...';
-                              } else {
-                                echo $row->category_name;
-                              }
-                              ?>
-                            </a>
-                            <?php
-                            if ($counts > 0) {
-                              ?>
-                              <ul>
-                                <?php
-                                $sub_category_list = $ci->get_sub_category($row->id);
-                                $i = 1;
-                                foreach ($sub_category_list as $key1 => $row1) {
-                                  ?>
-                                  <li>
-                                    <a href="<?= site_url('category/' . $row->category_slug . '/' . $row1->sub_category_slug) ?>">
-                                      <?php
-                                      if (strlen($row1->sub_category_name) > 30) {
-                                        echo substr(stripslashes($row1->sub_category_name), 0, 30) . '...';
-                                      } else {
-                                        echo $row1->sub_category_name;
-                                      }
-                                      ?>
-                                    </a>
-                                  </li>
-                                <?php } ?>
-                              </ul>
-                            <?php } ?>
-                          </li>
-                        <?php } ?>
-                      </ul>
-                    </li>
-                    <li <?php if (isset($current_page) && $current_page == $this->lang->line('offers_lbl')) {
-                      echo 'class="active"';
-                    } ?>><a href="<?= base_url('/offers') ?>"><?= $this->lang->line('offer_lbl') ?></a></li>
-                    <li <?php if (isset($current_page) && $current_page == $this->lang->line('todays_deal_lbl')) {
-                      echo 'class="active"';
-                    } ?>><a href="<?= base_url('/todays-deals') ?>"><?= $this->lang->line('todays_deal_lbl') ?></a></li>
-                    <li <?php if (isset($current_page) && $current_page == $this->lang->line('contactus_lbl')) {
-                      echo 'class="active"';
-                    } ?>><a href="<?php echo site_url('contact-us'); ?>"><?= $this->lang->line('contactus_lbl') ?></a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="header-bottom-area header-sticky">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-3">
-              <div class="side-menu">
-                <div class="category-heading">
-                  <h2><i class="ion-android-menu"></i><span><?= $this->lang->line('category_lbl') ?></span></h2>
-                </div>
-                <div id="cate-toggle" class="category-menu-list">
-                  <ul>
-                    <?php
-
-                    $n = 1;
-                    foreach ($category_list as $key => $row) {
-                      if ($n > 8) {
-                        break;
-                      }
-
-                      $n++;
-
-                      $counts = $ci->getCount('tbl_sub_category', array('category_id' => $row->id, 'status' => '1'));
-
-                      if ($counts > 0) {
-                        $url = base_url('category/' . $row->category_slug);
-                      } else {
-                        $url = base_url('category/products/' . $row->id);
-                      }
-
-                      ?>
-                      <li <?php if ($counts > 0) {
-                        echo 'class="right-menu"';
-                      } ?>>
-                      <a href="<?= $url ?>">
-                        <?php
-                        if (strlen($row->category_name) > 30) {
-                          echo substr(stripslashes($row->category_name), 0, 30) . '...';
-                        } else {
-                          echo $row->category_name;
-                        }
-                        ?>
-                      </a>
-                      <?php
-                      if ($counts > 0) {
-                        ?>
-                        <ul class="cat-dropdown">
-
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/category') ?>"><?= $this->lang->line('category_lbl') ?></a>
+                        <ul>
                           <?php
-                          $sub_category_list = $ci->get_sub_category($row->id);
-                          $i = 1;
-                          foreach ($sub_category_list as $key1 => $row1) {
+                          $n = 1;
+                          foreach ($ci->get_category() as $key => $row) {
 
-                            if ($i > 5) {
-                              break;
+                            $counts = $ci->getCount('tbl_sub_category', array('category_id' => $row->id, 'status' => '1'));
+
+                            if ($counts > 0) {
+                              $url = base_url('category/' . $row->category_slug);
+                            } else {
+                              $url = base_url('category/products/' . $row->id);
                             }
 
-                            $i++;
-                            ?>
+                          ?>
                             <li>
-                              <a href="<?= site_url('category/' . $row->category_slug . '/' . $row1->sub_category_slug) ?>">
+                              <a href="<?= $url ?>">
                                 <?php
-                                if (strlen($row1->sub_category_name) > 30) {
-                                  echo substr(stripslashes($row1->sub_category_name), 0, 30) . '...';
+                                if (strlen($row->category_name) > 30) {
+                                  echo substr(stripslashes($row->category_name), 0, 30) . '...';
                                 } else {
-                                  echo $row1->sub_category_name;
+                                  echo $row->category_name;
                                 }
                                 ?>
                               </a>
+                              <?php
+                              if ($counts > 0) {
+                              ?>
+                                <ul>
+                                  <?php
+                                  $sub_category_list = $ci->get_sub_category($row->id);
+                                  $i = 1;
+                                  foreach ($sub_category_list as $key1 => $row1) {
+                                  ?>
+                                    <li>
+                                      <a href="<?= site_url('category/' . $row->category_slug . '/' . $row1->sub_category_slug) ?>">
+                                        <?php
+                                        if (strlen($row1->sub_category_name) > 30) {
+                                          echo substr(stripslashes($row1->sub_category_name), 0, 30) . '...';
+                                        } else {
+                                          echo $row1->sub_category_name;
+                                        }
+                                        ?>
+                                      </a>
+                                    </li>
+                                  <?php } ?>
+                                </ul>
+                              <?php } ?>
                             </li>
-                            <?php
-                          }
-                          if ($counts > 5) {
-                            ?>
-                            <li class="rx-parent"> <a class="rx-default" href="<?= site_url('category/' . $row->category_slug) ?>"><span class="cat-thumb fa fa-ellipsis-h"></span><?= $this->lang->line('view_all_lbl') ?></a></li>
                           <?php } ?>
                         </ul>
-                      <?php } ?>
-                    </li>
-                  <?php }
-                  if (count($category_list) > 8) {
-                    ?>
-                    <li class="rx-parent"> <a class="rx-default" href="<?= base_url('/category') ?>"><?= $this->lang->line('view_all_lbl') ?></a></li>
-                  <?php } ?>
-
-                </ul>
+                      </li>
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('offers_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/offers') ?>"><?= $this->lang->line('offer_lbl') ?></a></li>
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('todays_deal_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/todays-deals') ?>"><?= $this->lang->line('todays_deal_lbl') ?></a></li>
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('contactus_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?php echo site_url('contact-us'); ?>"><?= $this->lang->line('contactus_lbl') ?></a></li>
+                    </ul>
+                  </nav>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-9 col-sm-9">
-            <div class="logo-sticky"> <a href="<?= base_url('/') ?>"><img src="<?= base_url('assets/images/') . APP_LOGO ?>" alt="" style="max-width: 250px !important;height: auto;min-width: 100%;"></a> </div>
-            <div class="main-menu-area">
-              <nav>
-                <ul class="main-menu">
-                  <li <?php if (isset($current_page) && $current_page == $this->lang->line('home_lbl')) {
-                    echo 'class="active"';
-                  } ?>><a href="<?= base_url('/') ?>"><?= $this->lang->line('home_lbl') ?></a></li>
-                  <li <?php if (isset($current_page) && $current_page == $this->lang->line('offers_lbl')) {
-                    echo 'class="active"';
-                  } ?>><a href="<?= base_url('/offers') ?>"><?= $this->lang->line('offer_lbl') ?></a></li>
-                  <li <?php if (isset($current_page) && $current_page == $this->lang->line('todays_deal_lbl')) {
-                    echo 'class="active"';
-                  } ?>><a href="<?= base_url('/todays-deals') ?>"><?= $this->lang->line('todays_deal_lbl') ?></a></li>
-                  <li <?php if (isset($current_page) && $current_page == $this->lang->line('contactus_lbl')) {
-                    echo 'class="active"';
-                  } ?>><a href="<?php echo site_url('contact-us'); ?>"><?= $this->lang->line('contactus_lbl') ?></a></li>
-                </ul>
-              </nav>
+        </div>
+        <div class="header-bottom-area header-sticky">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 col-sm-3">
+                <div class="side-menu">
+                  <div class="category-heading">
+                    <h2><i class="ion-android-menu"></i><span><?= $this->lang->line('category_lbl') ?></span></h2>
+                  </div>
+                  <div id="cate-toggle" class="category-menu-list">
+                    <ul>
+                      <?php
+
+                      $n = 1;
+                      foreach ($category_list as $key => $row) {
+                        if ($n > 8) {
+                          break;
+                        }
+
+                        $n++;
+
+                        $counts = $ci->getCount('tbl_sub_category', array('category_id' => $row->id, 'status' => '1'));
+
+                        if ($counts > 0) {
+                          $url = base_url('category/' . $row->category_slug);
+                        } else {
+                          $url = base_url('category/products/' . $row->id);
+                        }
+
+                      ?>
+                        <li <?php if ($counts > 0) {
+                              echo 'class="right-menu"';
+                            } ?>>
+                          <a href="<?= $url ?>">
+                            <?php
+                            if (strlen($row->category_name) > 30) {
+                              echo substr(stripslashes($row->category_name), 0, 30) . '...';
+                            } else {
+                              echo $row->category_name;
+                            }
+                            ?>
+                          </a>
+                          <?php
+                          if ($counts > 0) {
+                          ?>
+                            <ul class="cat-dropdown">
+
+                              <?php
+                              $sub_category_list = $ci->get_sub_category($row->id);
+                              $i = 1;
+                              foreach ($sub_category_list as $key1 => $row1) {
+
+                                if ($i > 5) {
+                                  break;
+                                }
+
+                                $i++;
+                              ?>
+                                <li>
+                                  <a href="<?= site_url('category/' . $row->category_slug . '/' . $row1->sub_category_slug) ?>">
+                                    <?php
+                                    if (strlen($row1->sub_category_name) > 30) {
+                                      echo substr(stripslashes($row1->sub_category_name), 0, 30) . '...';
+                                    } else {
+                                      echo $row1->sub_category_name;
+                                    }
+                                    ?>
+                                  </a>
+                                </li>
+                              <?php
+                              }
+                              if ($counts > 5) {
+                              ?>
+                                <li class="rx-parent"> <a class="rx-default" href="<?= site_url('category/' . $row->category_slug) ?>"><span class="cat-thumb fa fa-ellipsis-h"></span><?= $this->lang->line('view_all_lbl') ?></a></li>
+                              <?php } ?>
+                            </ul>
+                          <?php } ?>
+                        </li>
+                      <?php }
+                      if (count($category_list) > 8) {
+                      ?>
+                        <li class="rx-parent"> <a class="rx-default" href="<?= base_url('/category') ?>"><?= $this->lang->line('view_all_lbl') ?></a></li>
+                      <?php } ?>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-9">
+                <div class="logo-sticky"> <a href="<?= base_url('/') ?>"><img src="<?= base_url('assets/images/') . APP_LOGO ?>" alt="" style="max-width: 250px !important;height: auto;min-width: 100%;"></a> </div>
+                <div class="main-menu-area">
+                  <nav>
+                    <ul class="main-menu">
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('home_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/') ?>"><?= $this->lang->line('home_lbl') ?></a></li>
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('offers_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/offers') ?>"><?= $this->lang->line('offer_lbl') ?></a></li>
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('todays_deal_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?= base_url('/todays-deals') ?>"><?= $this->lang->line('todays_deal_lbl') ?></a></li>
+                      <li <?php if (isset($current_page) && $current_page == $this->lang->line('contactus_lbl')) {
+                            echo 'class="active"';
+                          } ?>><a href="<?php echo site_url('contact-us'); ?>"><?= $this->lang->line('contactus_lbl') ?></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
+    </header>

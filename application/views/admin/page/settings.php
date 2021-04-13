@@ -1,29 +1,31 @@
 <?php
 
-  define('APP_CURRENCY', $this->db->get_where('tbl_settings', array('id' => '1'))->row()->app_currency_code);
-  define('CURRENCY_CODE', $this->db->get_where('tbl_settings', array('id' => '1'))->row()->app_currency_html_code);
+define('APP_CURRENCY', $this->db->get_where('tbl_settings', array('id' => '1'))->row()->app_currency_code);
+define('CURRENCY_CODE', $this->db->get_where('tbl_settings', array('id' => '1'))->row()->app_currency_html_code);
 
-  $home_category_ids=array();
+$home_category_ids = array();
 
-  foreach ($home_category as $key => $value)
-  {
-    $home_category_ids[]=$value->id;
-  }
+foreach ($home_category as $key => $value) {
+  $home_category_ids[] = $value->id;
+}
 ?>
 
 <style type="text/css">
   .select2 {
     width: 100% !important;
   }
-  .dataTables_wrapper .top{
-    top:auto !important;
+
+  .dataTables_wrapper .top {
+    top: auto !important;
     padding: 0px 20px 0px 0px !important;
   }
+
   .morecontent span {
-      display: none;
+    display: none;
   }
+
   .morelink {
-      display: block;
+    display: block;
   }
 </style>
 <div class="row card_item_block" style="padding-left:30px;padding-right: 30px">
@@ -38,18 +40,20 @@
       <div class="card-body mrg_bottom" style="padding: 0px">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          
+
           <li role="presentation" class="active"><a href="#general_settings" aria-controls="general_settings" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> <?= $this->lang->line('general_setting_lbl') ?></a></li>
-          
+
           <li role="presentation"><a href="#payment_settings" aria-controls="payment_settings" role="tab" data-toggle="tab"><i class="fa fa-credit-card"></i> <?= $this->lang->line('payment_lbl') ?></a></li>
-          
+
           <li role="presentation"><a href="#smtp_settings" aria-controls="smtp_settings" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i> <?= $this->lang->line('smtp_setting_lbl') ?></a></li>
 
-          <li role="presentation"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab"><i class="fa fa-question-circle" aria-hidden="true"></i> <?=$this->lang->line('faq_lbl')?></a></li>
-          <li role="presentation"><a href="#payments" aria-controls="payments" role="tab" data-toggle="tab"><i class="fa fa-question-circle" aria-hidden="true"></i> <?=$this->lang->line('payments_lbl')?></a></li>
+          <li role="presentation"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab"><i class="fa fa-question-circle" aria-hidden="true"></i> <?= $this->lang->line('faq_lbl') ?></a></li>
+          <li role="presentation"><a href="#payments" aria-controls="payments" role="tab" data-toggle="tab"><i class="fa fa-question-circle" aria-hidden="true"></i> <?= $this->lang->line('payments_lbl') ?></a></li>
 
-          <li role="presentation"><a href="#home_content" aria-controls="home_content" role="tab" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i> <?=$this->lang->line('home_content_lbl')?></a></li>
-
+          <li role="presentation"><a href="#home_content" aria-controls="home_content" role="tab" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i> <?= $this->lang->line('home_content_lbl') ?></a></li>
+          <?php if (isset($is_rajaongkir) && $is_rajaongkir == "1") { ?>
+            <li role="presentation"><a href="#shipping_settings" aria-controls="shipping_settings" role="tab" data-toggle="tab"><i class="fa fa-truck" aria-hidden="true"></i> <?= $this->lang->line('shipping_content_lbl') ?></a></li>
+          <?php  } ?>
         </ul>
 
         <div class="rows">
@@ -170,11 +174,13 @@
                       <div class="form-group">
                         <label class="col-md-4 control-label"><?= $this->lang->line('app_description_lbl') ?>:-</label>
                         <div class="col-md-6">
-                          <textarea name="app_description" id="app_description" class="form-control"><?php echo stripslashes($settings_row->app_description);?></textarea>
-                            <script>CKEDITOR.replace( 'app_description' );</script>
+                          <textarea name="app_description" id="app_description" class="form-control"><?php echo stripslashes($settings_row->app_description); ?></textarea>
+                          <script>
+                            CKEDITOR.replace('app_description');
+                          </script>
                         </div>
                       </div>
-                      <br/>
+                      <br />
                       <div class="form-group">
                         <label class="col-md-4 control-label"><?= $this->lang->line('app_version_lbl') ?>:-</label>
                         <div class="col-md-6">
@@ -380,8 +386,12 @@
                         <label class="col-md-3 control-label"><?= $this->lang->line('smtp_library_lbl') ?> :-</label>
                         <div class="col-md-9">
                           <select name="smtp_library" class="select2" required="required">
-                            <option value="ci" <?php if ($smtp->smtp_library == 'ci') { echo 'selected'; } ?>><?= $this->lang->line('smtp_library_ci_lbl') ?></option>
-                            <option value="phpmailer" <?php if ($smtp->smtp_library == 'phpmailer') { echo 'selected'; } ?>><?= $this->lang->line('smtp_library_mailer_lbl') ?></option>
+                            <option value="ci" <?php if ($smtp->smtp_library == 'ci') {
+                                                  echo 'selected';
+                                                } ?>><?= $this->lang->line('smtp_library_ci_lbl') ?></option>
+                            <option value="phpmailer" <?php if ($smtp->smtp_library == 'phpmailer') {
+                                                        echo 'selected';
+                                                      } ?>><?= $this->lang->line('smtp_library_mailer_lbl') ?></option>
                           </select>
                         </div>
                       </div>
@@ -389,13 +399,17 @@
                         <label class="col-md-3 control-label"><?= $this->lang->line('smtp_type_lbl') ?> <span style="color: red">*</span>:-</label>
                         <div class="col-md-9">
                           <div class="radio radio-inline" style="margin-top: 10px">
-                            <input type="radio" name="smtp_type" id="gmail" value="gmail" <?php if ($smtp->smtp_type == 'gmail') { echo ' checked="" disabled="disabled"'; } ?>>
+                            <input type="radio" name="smtp_type" id="gmail" value="gmail" <?php if ($smtp->smtp_type == 'gmail') {
+                                                                                            echo ' checked="" disabled="disabled"';
+                                                                                          } ?>>
                             <label for="gmail">
                               <?= $this->lang->line('gmail_smtp_lbl') ?>
                             </label>
                           </div>
                           <div class="radio radio-inline" style="margin-top: 10px">
-                            <input type="radio" name="smtp_type" id="server" value="server" <?php if ($smtp->smtp_type == 'server') { echo ' checked="" disabled="disabled"'; } ?>>
+                            <input type="radio" name="smtp_type" id="server" value="server" <?php if ($smtp->smtp_type == 'server') {
+                                                                                              echo ' checked="" disabled="disabled"';
+                                                                                            } ?>>
                             <label for="server">
                               <?= $this->lang->line('server_smtp_lbl') ?>
                             </label>
@@ -406,17 +420,25 @@
 
                       <input type="hidden" name="smtpIndex" value="<?= $smtp->smtp_type ?>">
 
-                      <div class="gmailContent" <?php if ($smtp->smtp_type == 'gmail') { echo 'style="display:block"'; } else { echo 'style="display:none"';} ?>>
+                      <div class="gmailContent" <?php if ($smtp->smtp_type == 'gmail') {
+                                                  echo 'style="display:block"';
+                                                } else {
+                                                  echo 'style="display:none"';
+                                                } ?>>
                         <div class="form-group">
                           <label class="col-md-3 control-label"><?= $this->lang->line('smtp_host_lbl') ?> <span style="color: red">*</span>:-</label>
                           <div class="col-md-9">
-                            <input type="text" name="smtp_host[]" class="form-control" value="<?= $smtp->smtp_ghost ?>" placeholder="mail.example.in" <?php if ($smtp->smtp_type == 'gmail') { echo 'required';} ?>>
+                            <input type="text" name="smtp_host[]" class="form-control" value="<?= $smtp->smtp_ghost ?>" placeholder="mail.example.in" <?php if ($smtp->smtp_type == 'gmail') {
+                                                                                                                                                        echo 'required';
+                                                                                                                                                      } ?>>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-md-3 control-label"><?= $this->lang->line('email_lbl') ?> <span style="color: red">*</span>:-</label>
                           <div class="col-md-9">
-                            <input type="text" name="smtp_email[]" class="form-control" value="<?= $smtp->smtp_gemail ?>" placeholder="info@example.com" <?php if ($smtp->smtp_type == 'gmail') { echo 'required'; } ?>>
+                            <input type="text" name="smtp_email[]" class="form-control" value="<?= $smtp->smtp_gemail ?>" placeholder="info@example.com" <?php if ($smtp->smtp_type == 'gmail') {
+                                                                                                                                                            echo 'required';
+                                                                                                                                                          } ?>>
                           </div>
                         </div>
 
@@ -430,18 +452,30 @@
                         <div class="form-group">
                           <label class="col-md-3 control-label"><?= $this->lang->line('smtp_secure_lbl') ?> :-</label>
                           <div class="col-md-5">
-                            <select name="smtp_secure[]" class="select2" <?php if ($smtp->smtp_type == 'gmail') { echo 'required';} ?>>
-                              <option value="tls" <?php if ($smtp->smtp_gsecure == 'tls') { echo 'selected'; } ?>>TLS</option>
-                              <option value="ssl" <?php if ($smtp->smtp_gsecure == 'ssl') { echo 'selected'; } ?>>SSL</option>
+                            <select name="smtp_secure[]" class="select2" <?php if ($smtp->smtp_type == 'gmail') {
+                                                                            echo 'required';
+                                                                          } ?>>
+                              <option value="tls" <?php if ($smtp->smtp_gsecure == 'tls') {
+                                                    echo 'selected';
+                                                  } ?>>TLS</option>
+                              <option value="ssl" <?php if ($smtp->smtp_gsecure == 'ssl') {
+                                                    echo 'selected';
+                                                  } ?>>SSL</option>
                             </select>
                           </div>
                           <div class="col-md-4">
-                            <input type="text" name="port_no[]" class="form-control" value="<?= $smtp->gport_no ?>" <?php if ($smtp->smtp_type == 'gmail') { echo 'required'; } ?>>
+                            <input type="text" name="port_no[]" class="form-control" value="<?= $smtp->gport_no ?>" <?php if ($smtp->smtp_type == 'gmail') {
+                                                                                                                      echo 'required';
+                                                                                                                    } ?>>
                           </div>
                         </div>
                       </div>
 
-                      <div class="serverContent" <?php if ($smtp->smtp_type == 'server') { echo 'style="display:block"';} else {echo 'style="display:none"';} ?>>
+                      <div class="serverContent" <?php if ($smtp->smtp_type == 'server') {
+                                                    echo 'style="display:block"';
+                                                  } else {
+                                                    echo 'style="display:none"';
+                                                  } ?>>
                         <div class="form-group">
                           <label class="col-md-3 control-label"><?= $this->lang->line('smtp_host_lbl') ?> <span style="color: red">*</span>:-</label>
                           <div class="col-md-9">
@@ -464,8 +498,12 @@
                           <label class="col-md-3 control-label"><?= $this->lang->line('smtp_secure_lbl') ?> :-</label>
                           <div class="col-md-5">
                             <select name="smtp_secure[]" class="select2" required>
-                              <option value="tls" <?php if ($smtp->smtp_secure == 'tls') { echo 'selected'; } ?>>TLS</option>
-                              <option value="ssl" <?php if ($smtp->smtp_secure == 'ssl') { echo 'selected'; } ?>>SSL</option>
+                              <option value="tls" <?php if ($smtp->smtp_secure == 'tls') {
+                                                    echo 'selected';
+                                                  } ?>>TLS</option>
+                              <option value="ssl" <?php if ($smtp->smtp_secure == 'ssl') {
+                                                    echo 'selected';
+                                                  } ?>>SSL</option>
                             </select>
                           </div>
                           <div class="col-md-4">
@@ -484,22 +522,22 @@
                   </div>
                   <div class="col-md-4">
                     <div class="check_smtp" style="border: 1px solid rgb(153, 153, 153);padding: 10px 20px;border-radius: 6px;">
-                      <h4><?=$this->lang->line('smtp_check_email_lbl')?></h4>
-                      <p style="color:#8a8a8a;"><?=$this->lang->line('smtp_check_email_sort_lbl')?></p>
-                      <hr/>
+                      <h4><?= $this->lang->line('smtp_check_email_lbl') ?></h4>
+                      <p style="color:#8a8a8a;"><?= $this->lang->line('smtp_check_email_sort_lbl') ?></p>
+                      <hr />
                       <form action="" method="post" id="check_smtp_form">
                         <div class="form-group">
-                          <label class="control-label"><?=$this->lang->line('email_lbl')?> <span style="color: red">*</span>:-</label>
+                          <label class="control-label"><?= $this->lang->line('email_lbl') ?> <span style="color: red">*</span>:-</label>
                           <div>
-                            <input type="text" name="email" class="form-control" autocomplete="off" placeholder="info@example.com"  required="">
+                            <input type="text" name="email" class="form-control" autocomplete="off" placeholder="info@example.com" required="">
                           </div>
                         </div>
                         <div class="form-group">
                           <div>
-                            <button type="submit" name="btn_send" class="btn btn-primary"><?=$this->lang->line('send_btn')?></button>
+                            <button type="submit" name="btn_send" class="btn btn-primary"><?= $this->lang->line('send_btn') ?></button>
                           </div>
                         </div>
-                      </form> 
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -515,49 +553,51 @@
 
               <!-- for faq tab -->
               <div role="tabpanel" class="tab-pane search-faq-item" id="faq">
-                  <div class="section">
-                    <div class="section-body">
-                      
-                      <div class="add_btn_primary" style="position: absolute;margin-top: 5px"> <a href="<?=site_url('admin/faq/add')?>?redirect=<?=$redirectUrl?>"><?=$this->lang->line('add_new_lbl')?></a> </div>
+                <div class="section">
+                  <div class="section-body">
 
-                      <table class="datatable table table-striped table-bordered table-hover" style="margin-top: 50px !important">
-                        <thead>
-                          <tr>
-                            <th>#</th>             
-                            <th><?=$this->lang->line('question_lbl')?></th>
-                            <th><?=$this->lang->line('answer_lbl')?></th>
-                            <th nowrap=""><?=$this->lang->line('status_lbl')?></th>
-                            <th><?=$this->lang->line('action_lbl')?></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php  
-                            $i=1;
-                            foreach ($faq_row as $key => $value) {
-                          ?>
+                    <div class="add_btn_primary" style="position: absolute;margin-top: 5px"> <a href="<?= site_url('admin/faq/add') ?>?redirect=<?= $redirectUrl ?>"><?= $this->lang->line('add_new_lbl') ?></a> </div>
+
+                    <table class="datatable table table-striped table-bordered table-hover" style="margin-top: 50px !important">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th><?= $this->lang->line('question_lbl') ?></th>
+                          <th><?= $this->lang->line('answer_lbl') ?></th>
+                          <th nowrap=""><?= $this->lang->line('status_lbl') ?></th>
+                          <th><?= $this->lang->line('action_lbl') ?></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($faq_row as $key => $value) {
+                        ?>
                           <tr class="item_holder">
-                            <td><?=$i++?></td>
+                            <td><?= $i++ ?></td>
                             <td>
-                              <?=$value->faq_question?>
+                              <?= $value->faq_question ?>
                             </td>
                             <td class="more">
-                                <?=stripslashes($value->faq_answer)?>
+                              <?= stripslashes($value->faq_answer) ?>
                             </td>
                             <td>
-                              <input type="checkbox" id="enable_disable_check_<?=$i?>" data-id="<?=$value->id?>" class="cbx hidden enable_disable" <?php if($value->status==1){ echo 'checked';} ?>>
-                              <label for="enable_disable_check_<?=$i?>" class="lbl"></label>
+                              <input type="checkbox" id="enable_disable_check_<?= $i ?>" data-id="<?= $value->id ?>" class="cbx hidden enable_disable" <?php if ($value->status == 1) {
+                                                                                                                                                          echo 'checked';
+                                                                                                                                                        } ?>>
+                              <label for="enable_disable_check_<?= $i ?>" class="lbl"></label>
                             </td>
                             <td nowrap="">
-                              <a href="<?php echo site_url("admin/faq/edit/".$value->id);?>?redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-toggle="tooltip" data-tooltip="<?=$this->lang->line('edit_lbl')?>"><i class="fa fa-edit"></i></a>
+                              <a href="<?php echo site_url("admin/faq/edit/" . $value->id); ?>?redirect=<?= $redirectUrl ?>" class="btn btn-primary btn_edit" data-toggle="tooltip" data-tooltip="<?= $this->lang->line('edit_lbl') ?>"><i class="fa fa-edit"></i></a>
 
-                              <a href="" class="btn btn-danger btn_delete" data-toggle="tooltip" data-id="<?=$value->id?>" data-tooltip="<?=$this->lang->line('delete_lbl')?>"><i class="fa fa-trash"></i></a>
+                              <a href="" class="btn btn-danger btn_delete" data-toggle="tooltip" data-id="<?= $value->id ?>" data-tooltip="<?= $this->lang->line('delete_lbl') ?>"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
-                          <?php } ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        <?php } ?>
+                      </tbody>
+                    </table>
                   </div>
+                </div>
               </div>
               <!-- end faq tab -->
 
@@ -565,239 +605,241 @@
 
               <div role="tabpanel" class="tab-pane search-faq-item" id="payments">
                 <div class="section">
-                    <div class="section-body">
+                  <div class="section-body">
 
-                      <div class="add_btn_primary" style="position: absolute;margin-top: 5px"> <a href="<?=site_url('admin/payment-faq/add')?>?redirect=<?=$redirectUrl?>"><?=$this->lang->line('add_new_lbl')?></a> </div>
-                      <table class="datatable table table-striped table-bordered table-hover" style="margin-top: 50px !important">
-                        <thead>
-                          <tr>
-                            <th>#</th>             
-                            <th><?=$this->lang->line('question_lbl')?></th>
-                            <th><?=$this->lang->line('answer_lbl')?></th>
-                            <th nowrap=""><?=$this->lang->line('status_lbl')?></th>
-                            <th><?=$this->lang->line('action_lbl')?></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php  
-                            $i=1;
-                            foreach ($payment_faq_row as $key => $value) {
-                          ?>
+                    <div class="add_btn_primary" style="position: absolute;margin-top: 5px"> <a href="<?= site_url('admin/payment-faq/add') ?>?redirect=<?= $redirectUrl ?>"><?= $this->lang->line('add_new_lbl') ?></a> </div>
+                    <table class="datatable table table-striped table-bordered table-hover" style="margin-top: 50px !important">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th><?= $this->lang->line('question_lbl') ?></th>
+                          <th><?= $this->lang->line('answer_lbl') ?></th>
+                          <th nowrap=""><?= $this->lang->line('status_lbl') ?></th>
+                          <th><?= $this->lang->line('action_lbl') ?></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($payment_faq_row as $key => $value) {
+                        ?>
                           <tr class="item_holder">
-                            <td><?=$i++?></td>
+                            <td><?= $i++ ?></td>
                             <td>
-                              <?=$value->faq_question?>
+                              <?= $value->faq_question ?>
                             </td>
                             <td class="more">
-                                <?=stripslashes($value->faq_answer)?>
+                              <?= stripslashes($value->faq_answer) ?>
                             </td>
                             <td>
-                              <input type="checkbox" id="enable_disable_payment_check_<?=$i?>" data-id="<?=$value->id?>" class="cbx hidden enable_disable" <?php if($value->status==1){ echo 'checked';} ?>>
-                              <label for="enable_disable_payment_check_<?=$i?>" class="lbl"></label>
+                              <input type="checkbox" id="enable_disable_payment_check_<?= $i ?>" data-id="<?= $value->id ?>" class="cbx hidden enable_disable" <?php if ($value->status == 1) {
+                                                                                                                                                                  echo 'checked';
+                                                                                                                                                                } ?>>
+                              <label for="enable_disable_payment_check_<?= $i ?>" class="lbl"></label>
                             </td>
                             <td nowrap="">
-                              <a href="<?php echo site_url("admin/payment-faq/edit/".$value->id);?>?redirect=<?=$redirectUrl?>" class="btn btn-primary btn_edit" data-toggle="tooltip" data-tooltip="<?=$this->lang->line('edit_lbl')?>"><i class="fa fa-edit"></i></a>
+                              <a href="<?php echo site_url("admin/payment-faq/edit/" . $value->id); ?>?redirect=<?= $redirectUrl ?>" class="btn btn-primary btn_edit" data-toggle="tooltip" data-tooltip="<?= $this->lang->line('edit_lbl') ?>"><i class="fa fa-edit"></i></a>
 
-                              <a href="" class="btn btn-danger btn_delete" data-toggle="tooltip" data-id="<?=$value->id?>" data-tooltip="<?=$this->lang->line('delete_lbl')?>"><i class="fa fa-trash"></i></a>
+                              <a href="" class="btn btn-danger btn_delete" data-toggle="tooltip" data-id="<?= $value->id ?>" data-tooltip="<?= $this->lang->line('delete_lbl') ?>"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
-                          <?php } ?>
-                        </tbody>
-                      </table>
-                    </div>
+                        <?php } ?>
+                      </tbody>
+                    </table>
                   </div>
+                </div>
               </div>
               <!-- end payment faq tab -->
 
               <!-- for home page tab -->
               <div role="tabpanel" class="tab-pane" id="home_content">
-                <form action="<?=site_url('admin/pages/save_setting')?>" method="post" class="form form-horizontal" enctype="multipart/form-data">
+                <form action="<?= site_url('admin/pages/save_setting') ?>" method="post" class="form form-horizontal" enctype="multipart/form-data">
                   <input type="hidden" name="action_for" value="home_content">
                   <div class="section">
                     <div class="section-body">
-                      <p class="hint_lbl"><?=$this->lang->line('home_setting_note_lbl')?></p>
-                      <br/>
+                      <p class="hint_lbl"><?= $this->lang->line('home_setting_note_lbl') ?></p>
+                      <br />
                       <div class="form-group">
-                        <label class="col-md-4 control-label" style="font-size: 16px;font-weight: 600"><?=$this->lang->line('section_title_lbl')?></label>
-                        <label class="col-md-4 control-label" style="font-size: 16px;font-weight: 600"><?=$this->lang->line('for_web_lbl')?></label>
-                        <label class="col-md-4 control-label" style="font-size: 16px;font-weight: 600"><?=$this->lang->line('for_app_lbl')?></label>
+                        <label class="col-md-4 control-label" style="font-size: 16px;font-weight: 600"><?= $this->lang->line('section_title_lbl') ?></label>
+                        <label class="col-md-4 control-label" style="font-size: 16px;font-weight: 600"><?= $this->lang->line('for_web_lbl') ?></label>
+                        <label class="col-md-4 control-label" style="font-size: 16px;font-weight: 600"><?= $this->lang->line('for_app_lbl') ?></label>
                       </div>
-                      <hr/>
+                      <hr />
                       <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_slider_op_lbl')?>:-</label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_slider" class="cbx hidden" name="home_slider_opt" value="true" <?php echo $settings_row->home_slider_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_slider" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_slider" class="cbx hidden" name="app_home_slider_opt" value="true" <?php echo $settings_row->app_home_slider_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_slider" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_brand_op_lbl')?>:-</label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_brand" class="cbx hidden" name="home_brand_opt" value="true" <?php echo $settings_row->home_brand_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_brand" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_brand" class="cbx hidden" name="app_home_brand_opt" value="true" <?php echo $settings_row->app_home_brand_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_brand" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_category_op_lbl')?>:-</label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_category" class="cbx hidden" name="home_category_opt" value="true" <?php echo $settings_row->home_category_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_category" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_category" class="cbx hidden" name="app_home_category_opt" value="true" <?php echo $settings_row->app_home_category_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_category" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_offer_op_lbl')?>:-</label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_offer" class="cbx hidden" name="home_offer_opt" value="true" <?php echo $settings_row->home_offer_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_offer" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_offer" class="cbx hidden" name="app_home_offer_opt" value="true" <?php echo $settings_row->app_home_offer_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_offer" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_hot_deal_op_lbl')?>:-</label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_flash" class="cbx hidden" name="home_flase_opt" value="true" <?php echo $settings_row->home_flase_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_flash" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_flash" class="cbx hidden" name="app_home_flase_opt" value="true" <?php echo $settings_row->app_home_flase_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_flash" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_latest_op_lbl')?>:-</label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_latest" class="cbx hidden" name="home_latest_opt" value="true" <?php echo $settings_row->home_latest_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_latest" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_latest" class="cbx hidden" name="app_home_latest_opt" value="true" <?php echo $settings_row->app_home_latest_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_latest" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_top_rated_op_lbl')?>:-
-                          <p class="hint_lbl">(<?=$this->lang->line('home_top_rated_op_hint_lbl')?>)</p>
-                        </label>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_top_rated" class="cbx hidden" name="home_top_rated_opt" value="true" <?php echo $settings_row->home_top_rated_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_top_rated" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_top_rated" class="cbx hidden" name="app_home_top_rated_opt" value="true" <?php echo $settings_row->app_home_top_rated_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_top_rated" class="lbl" style="float: left"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-7 col-md-offset-4">
-                            <div class="row">
-                              <div class="form-group">
-                                <label class="col-md-12 control-label"><?=$this->lang->line('min_rate_lbl')?><span class="required_fields">*</span> :-</label>
-                                <div class="col-md-12">
-                                  <input type="number" name="min_rate" id="min_rate" min="3" value='<?php echo $settings_row->min_rate;?>' class="form-control" required="required">
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                      <hr/>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_cat_wise_op_lbl')?>:-</label>
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_slider_op_lbl') ?>:-</label>
                         <div class="col-md-4">
                           <div class="row toggle_btn">
-                              <input type="checkbox" id="cbx_home_cat_wise" class="cbx hidden" name="home_cat_wise_opt" value="true" <?php echo $settings_row->home_cat_wise_opt=='true' ? 'checked=""' : '' ?>>
-                              <label for="cbx_home_cat_wise" class="lbl" style="float: left"></label>
+                            <input type="checkbox" id="cbx_home_slider" class="cbx hidden" name="home_slider_opt" value="true" <?php echo $settings_row->home_slider_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_slider" class="lbl" style="float: left"></label>
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="row toggle_btn">
-                              <input type="checkbox" id="cbx_app_home_cat_wise" class="cbx hidden" name="app_home_cat_wise_opt" value="true" <?php echo $settings_row->app_home_cat_wise_opt=='true' ? 'checked=""' : '' ?>>
-                              <label for="cbx_app_home_cat_wise" class="lbl" style="float: left"></label>
+                            <input type="checkbox" id="cbx_app_home_slider" class="cbx hidden" name="app_home_slider_opt" value="true" <?php echo $settings_row->app_home_slider_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_slider" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_brand_op_lbl') ?>:-</label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_brand" class="cbx hidden" name="home_brand_opt" value="true" <?php echo $settings_row->home_brand_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_brand" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_brand" class="cbx hidden" name="app_home_brand_opt" value="true" <?php echo $settings_row->app_home_brand_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_brand" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_category_op_lbl') ?>:-</label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_category" class="cbx hidden" name="home_category_opt" value="true" <?php echo $settings_row->home_category_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_category" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_category" class="cbx hidden" name="app_home_category_opt" value="true" <?php echo $settings_row->app_home_category_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_category" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_offer_op_lbl') ?>:-</label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_offer" class="cbx hidden" name="home_offer_opt" value="true" <?php echo $settings_row->home_offer_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_offer" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_offer" class="cbx hidden" name="app_home_offer_opt" value="true" <?php echo $settings_row->app_home_offer_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_offer" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_hot_deal_op_lbl') ?>:-</label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_flash" class="cbx hidden" name="home_flase_opt" value="true" <?php echo $settings_row->home_flase_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_flash" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_flash" class="cbx hidden" name="app_home_flase_opt" value="true" <?php echo $settings_row->app_home_flase_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_flash" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_latest_op_lbl') ?>:-</label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_latest" class="cbx hidden" name="home_latest_opt" value="true" <?php echo $settings_row->home_latest_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_latest" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_latest" class="cbx hidden" name="app_home_latest_opt" value="true" <?php echo $settings_row->app_home_latest_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_latest" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_top_rated_op_lbl') ?>:-
+                          <p class="hint_lbl">(<?= $this->lang->line('home_top_rated_op_hint_lbl') ?>)</p>
+                        </label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_top_rated" class="cbx hidden" name="home_top_rated_opt" value="true" <?php echo $settings_row->home_top_rated_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_top_rated" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_top_rated" class="cbx hidden" name="app_home_top_rated_opt" value="true" <?php echo $settings_row->app_home_top_rated_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_top_rated" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-7 col-md-offset-4">
+                          <div class="row">
+                            <div class="form-group">
+                              <label class="col-md-12 control-label"><?= $this->lang->line('min_rate_lbl') ?><span class="required_fields">*</span> :-</label>
+                              <div class="col-md-12">
+                                <input type="number" name="min_rate" id="min_rate" min="3" value='<?php echo $settings_row->min_rate; ?>' class="form-control" required="required">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_cat_wise_op_lbl') ?>:-</label>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_cat_wise" class="cbx hidden" name="home_cat_wise_opt" value="true" <?php echo $settings_row->home_cat_wise_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_cat_wise" class="lbl" style="float: left"></label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_cat_wise" class="cbx hidden" name="app_home_cat_wise_opt" value="true" <?php echo $settings_row->app_home_cat_wise_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_cat_wise" class="lbl" style="float: left"></label>
                           </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-md-7 col-md-offset-4">
-                            <div class="row" style="margin-top: 20px">
-                              <p><?=$this->lang->line('select_cats_lbl')?></p>
-                              <select class="select2" name="home_category[]" multiple="">
-                                <?php 
-                                  foreach ($category_list as $key => $value) {
-                                    ?>
-                                    <option value="<?=$value->id?>" <?=(in_array($value->id, $home_category_ids)) ? 'selected' : ''?>><?=$value->category_name?></option>
-                                    <?php
-                                  }
-                                ?>
-                              </select>
-                            </div>
+                          <div class="row" style="margin-top: 20px">
+                            <p><?= $this->lang->line('select_cats_lbl') ?></p>
+                            <select class="select2" name="home_category[]" multiple="">
+                              <?php
+                              foreach ($category_list as $key => $value) {
+                              ?>
+                                <option value="<?= $value->id ?>" <?= (in_array($value->id, $home_category_ids)) ? 'selected' : '' ?>><?= $value->category_name ?></option>
+                              <?php
+                              }
+                              ?>
+                            </select>
+                          </div>
                         </div>
                       </div>
-                      <hr/>
+                      <hr />
                       <div class="form-group">
-                        <label class="col-md-4 control-label"><?=$this->lang->line('home_recent_op_lbl')?>:-</label>
+                        <label class="col-md-4 control-label"><?= $this->lang->line('home_recent_op_lbl') ?>:-</label>
                         <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_home_recent" class="cbx hidden" name="home_recent_opt" value="true" <?php echo $settings_row->home_recent_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_home_recent" class="lbl" style="float: left"></label>
-                            </div>
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_home_recent" class="cbx hidden" name="home_recent_opt" value="true" <?php echo $settings_row->home_recent_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_home_recent" class="lbl" style="float: left"></label>
+                          </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="row toggle_btn">
-                                <input type="checkbox" id="cbx_app_home_recent" class="cbx hidden" name="app_home_recent_opt" value="true" <?php echo $settings_row->app_home_recent_opt=='true' ? 'checked=""' : '' ?>>
-                                <label for="cbx_app_home_recent" class="lbl" style="float: left"></label>
-                            </div>
+                          <div class="row toggle_btn">
+                            <input type="checkbox" id="cbx_app_home_recent" class="cbx hidden" name="app_home_recent_opt" value="true" <?php echo $settings_row->app_home_recent_opt == 'true' ? 'checked=""' : '' ?>>
+                            <label for="cbx_app_home_recent" class="lbl" style="float: left"></label>
+                          </div>
                         </div>
                       </div>
-                      <br/>
-                      <div class="form-group">&nbsp;</div> 
+                      <br />
+                      <div class="form-group">&nbsp;</div>
                       <div class="form-group">
                         <div class="col-md-8 col-md-offset-4">
-                          <button type="submit" name="submit" class="btn btn-primary"><?=$this->lang->line('save_btn')?></button>
+                          <button type="submit" name="submit" class="btn btn-primary"><?= $this->lang->line('save_btn') ?></button>
                         </div>
                       </div>
                     </div>
@@ -805,7 +847,88 @@
                 </form>
               </div>
               <!-- end home page tab -->
+              <!--- start shipping tab -->
+              <div role="tabpanel" class="tab-pane" id="shipping_settings">
+                <form action="<?= site_url('admin/pages/save_setting') ?>" method="post" class="form form-horizontal" enctype="multipart/form-data">
+                  <input type="hidden" name="action_for" value="shipping">
+                  <div class="section">
+                    <div class="section-body">
+                      <br />
 
+                      <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                          <div class="panel-group" id="accordion">
+                            <?php if (isset($courier) && count($courier) > 0) {
+                              $x = 1;
+                              foreach ($courier as $row) { ?>
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $row["code"]; ?>">
+                                        <?php echo $row["name"]; ?></a>
+
+
+                                    </h5>
+                                    <?php if (isset($row["child"]) && count($row['child']) > 0) {
+
+                                      foreach ($row["child"] as $c) {
+                                        if (isset($shipping) && count($shipping)) {
+                                          foreach ($shipping as $s) {
+
+                                            if ($c['id'] == $s['id_mst_courier']) { ?>
+                                              <small> <?= $c["name"]; ?></small> |
+                                    <?php   }
+                                          }
+                                        }
+                                      }
+                                    } ?>
+
+                                  </div>
+                                  <div id="<?php echo $row["code"]; ?>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      <ul class="list-group">
+                                        <?php if (isset($row["child"]) && count($row['child']) > 0) {
+                                          foreach ($row["child"] as $child) {
+                                        ?>
+                                            <li class="list-group-item" style="border: none">
+                                              <div class="checkbox">
+                                                <input type="checkbox" <?= $child['checked'] ?> id=" <?= $child["code"]; ?>" value="<?= $child['id'] ?>" name="shipping_mst[]">
+                                                <label for=" <?= $child["code"]; ?>">
+                                                  <?= $child["name"]; ?>
+                                                </label>
+                                              </div>
+                                            </li>
+                                        <?php    }
+                                        } ?>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <?php
+                                if ($x % 5 == 0) { ?>
+                          </div>
+                          <div class="col-md-6 col-xs-12">
+                      <?php    }
+
+                                $x++;
+                              }
+                            } ?>
+                          </div>
+                        </div>
+                      </div>
+                      <br />
+                      <div class="form-group">&nbsp;</div>
+                      <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                          <button type="submit" name="submit" class="btn btn-primary"><?= $this->lang->line('save_btn') ?></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- end home page tab -->
             </div>
           </div>
         </div>
@@ -957,7 +1080,7 @@
 
             $("input[name='smtpIndex']").val('gmail');
 
-            $("input[name='smtp_password[]']").attr("required",false);
+            $("input[name='smtp_password[]']").attr("required", false);
 
             swal.close();
 
@@ -996,7 +1119,7 @@
             $(".serverContent").find("input").attr("required", true);
             $(".gmailContent").find("input").attr("required", false);
 
-            $("input[name='smtp_password[]']").attr("required",false);
+            $("input[name='smtp_password[]']").attr("required", false);
 
             swal.close();
 
@@ -1010,133 +1133,139 @@
 
   });
 
-  $("#check_smtp_form").on("submit",function(event){
+  $("#check_smtp_form").on("submit", function(event) {
     event.preventDefault();
 
-    var href='<?=base_url()?>admin/pages/check_smtp';
+    var href = '<?= base_url() ?>admin/pages/check_smtp';
 
-    var email=$(this).find("input[name='email']").val();
+    var email = $(this).find("input[name='email']").val();
 
     swal({
-      title: "<?=$this->lang->line('are_you_sure_msg')?>",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      cancelButtonClass: "btn-warning",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-      closeOnCancel: false,
-      showLoaderOnConfirm: true
-    },
-    function(isConfirm) {
-      if(isConfirm) {
-        $.ajax({
-          type:'post',
-          url:href,
-          dataType:'json',
-          data:{'email':email},
-          success:function(res){
-            if(res.success=='1'){
-              swal({
-                title: "<?=$this->lang->line('mail_send_msg')?>", 
-                text: "<?=$this->lang->line('mail_send_success_msg')?>", 
-                type: "success"
-              },function() {
-                location.reload();
-              });
+        title: "<?= $this->lang->line('are_you_sure_msg') ?>",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        cancelButtonClass: "btn-warning",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+        closeOnCancel: false,
+        showLoaderOnConfirm: true
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          $.ajax({
+            type: 'post',
+            url: href,
+            dataType: 'json',
+            data: {
+              'email': email
+            },
+            success: function(res) {
+              if (res.success == '1') {
+                swal({
+                  title: "<?= $this->lang->line('mail_send_msg') ?>",
+                  text: "<?= $this->lang->line('mail_send_success_msg') ?>",
+                  type: "success"
+                }, function() {
+                  location.reload();
+                });
+              } else {
+                swal({
+                  title: "Error",
+                  text: res.msg,
+                  type: 'error'
+                });
+              }
             }
-            else{
-              swal({title: "Error", text: res.msg, type: 'error'});
-            }
-          }
-        });
-      }
-      else{
-        swal.close();
-      }
-    });
+          });
+        } else {
+          swal.close();
+        }
+      });
   });
-
 </script>
 
 <script type="text/javascript">
   // for faq enable disable
-  $(".enable_disable").on("click",function(e){
+  $(".enable_disable").on("click", function(e) {
 
     var href;
     var btn = this;
-    var _id=$(this).data("id");
+    var _id = $(this).data("id");
 
-    var _for=$(this).prop("checked");
-    if(_for==false){
-      href='<?=base_url()?>admin/pages/faq_deactive/'+_id
-    }else{
-      href='<?=base_url()?>admin/pages/faq_active/'+_id
+    var _for = $(this).prop("checked");
+    if (_for == false) {
+      href = '<?= base_url() ?>admin/pages/faq_deactive/' + _id
+    } else {
+      href = '<?= base_url() ?>admin/pages/faq_active/' + _id
     }
 
     $.ajax({
-      type:'GET',
-      url:href,
-      success:function(res){
-          $('.notifyjs-corner').empty();
-          var obj = $.parseJSON(res);
-          $.notify($.trim(obj.message), { position:"top center",className: obj.class});
-        }
+      type: 'GET',
+      url: href,
+      success: function(res) {
+        $('.notifyjs-corner').empty();
+        var obj = $.parseJSON(res);
+        $.notify($.trim(obj.message), {
+          position: "top center",
+          className: obj.class
+        });
+      }
     });
 
   });
 
 
   $(document).ready(function() {
-      // Configure/customize these variables.
-      var showChar = 100;  // How many characters are shown by default
-      var ellipsestext = "...";
-      var moretext = "<?=$this->lang->line('show_more_lbl')?>";
-      var lesstext = "<?=$this->lang->line('show_less_lbl')?>";
-      
+    // Configure/customize these variables.
+    var showChar = 100; // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "<?= $this->lang->line('show_more_lbl') ?>";
+    var lesstext = "<?= $this->lang->line('show_less_lbl') ?>";
 
-      $('.more').each(function() {
-          var content = $.trim($(this).text());
 
-          if(content.length > showChar) {
+    $('.more').each(function() {
+      var content = $.trim($(this).text());
 
-              var c = content.substr(0, showChar);
-              var h = content.substr(showChar, content.length - showChar);
+      if (content.length > showChar) {
 
-              var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span><a href="" class="morelink">' + moretext + '</a></span>';
-   
-              $(this).html(html);
-          }
-   
-      });
-   
-      $(".morelink").click(function(){
-          if($(this).hasClass("less")) {
-              $(this).removeClass("less");
-              $(this).html(moretext);
-          } else {
-              $(this).addClass("less");
-              $(this).html(lesstext);
-          }
-          $(this).parent().prev().toggle();
-          $(this).prev().toggle();
-          return false;
-      });
+        var c = content.substr(0, showChar);
+        var h = content.substr(showChar, content.length - showChar);
+
+        var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span><a href="" class="morelink">' + moretext + '</a></span>';
+
+        $(this).html(html);
+      }
+
+    });
+
+    $(".morelink").click(function() {
+      if ($(this).hasClass("less")) {
+        $(this).removeClass("less");
+        $(this).html(moretext);
+      } else {
+        $(this).addClass("less");
+        $(this).html(lesstext);
+      }
+      $(this).parent().prev().toggle();
+      $(this).prev().toggle();
+      return false;
+    });
   });
 
   // for delete data
-  $(".btn_delete").click(function(e){
-      e.preventDefault();
-      var _id=$(this).data("id");
+  $(".btn_delete").click(function(e) {
+    e.preventDefault();
+    var _id = $(this).data("id");
 
-      e.preventDefault(); 
-      var href='<?=base_url()?>admin/pages/faq_payment_delete/'+_id;
+    e.preventDefault();
+    var href = '<?= base_url() ?>admin/pages/faq_payment_delete/' + _id;
 
-      var btn = this;
+    var btn = this;
 
-      swal({
-        title: "<?=$this->lang->line('are_you_sure_msg')?>",
+    swal({
+        title: "<?= $this->lang->line('are_you_sure_msg') ?>",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger btn_edit",
@@ -1151,27 +1280,25 @@
         if (isConfirm) {
 
           $.ajax({
-            type:'GET',
-            url:href,
-            success:function(res){
-                if($.trim(res)=='success'){
-                  swal({
-                      title: "<?=$this->lang->line('deleted_lbl')?>", 
-                      text: "<?=$this->lang->line('deleted_data_lbl')?>",
-                      type: "success"
-                  },function() {
-                      $(btn).closest('.item_holder').fadeOut("200");
-                  });
-                }
-                else
-                {
-                  swal("Error");
-                }
-
+            type: 'GET',
+            url: href,
+            success: function(res) {
+              if ($.trim(res) == 'success') {
+                swal({
+                  title: "<?= $this->lang->line('deleted_lbl') ?>",
+                  text: "<?= $this->lang->line('deleted_data_lbl') ?>",
+                  type: "success"
+                }, function() {
+                  $(btn).closest('.item_holder').fadeOut("200");
+                });
+              } else {
+                swal("Error");
               }
+
+            }
           });
-          
-        }else{
+
+        } else {
           swal.close();
         }
       });
