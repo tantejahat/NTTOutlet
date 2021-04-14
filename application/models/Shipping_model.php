@@ -350,4 +350,19 @@ where cart.user_id=" . $user_id .
             return false;
         }
     }
+    function GetCourierOneData($id_courier)
+    {
+        $sql = "select a.id,a.name,a.parent,b.name as parentname, b.path_img 
+        from tbl_mst_courier a 
+        inner join tbl_mst_courier b on a.parent=b.id
+       
+        where a.id=" . $id_courier;
+
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
 }

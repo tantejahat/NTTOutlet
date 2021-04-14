@@ -244,13 +244,15 @@ $redirect = $_GET['redirect'] . (isset($_GET['category']) ? '&category=' . $_GET
                       <div class="form-group">
                         <label class="col-md-4 control-label">Weight :-
                         </label>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                           <input type="text" name="weight" id="weight" value="<?php if (isset($product)) {
                                                                                 echo $product[0]->weight;
                                                                               } else {
                                                                                 echo '0';
                                                                               } ?>" class="form-control" placeholder="Weight" required>
                         </div>
+                        <div class="col-md-2">
+                          gram</div>
                       </div>
                     <?php } else { ?>
                       <div class="form-group">

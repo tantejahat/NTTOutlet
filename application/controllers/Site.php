@@ -2726,7 +2726,7 @@ class Site extends CI_Controller
 
             $order_unique_id = 'ORD' . $this->get_order_unique_id() . rand(0, 1000);
 
-            $total_amount = $you_save = $delivery_charge = 0;
+            $total_amount = $you_save = $delivery_charge = $weight = 0;
 
             if ($buy_now == 'false') {
 
@@ -2748,7 +2748,8 @@ class Site extends CI_Controller
                         }
 
                         $total_cart_amt += $value->selling_price * $value->product_qty;
-                        $delivery_charge = $this->input->post('price_courier');
+                        $delivery_charge += $value->delivery_charge;
+                        $weight += $value->product_qty * $value->weight;
                         $you_save += $value->you_save_amt * $value->product_qty;
                     }
 
@@ -2782,7 +2783,7 @@ class Site extends CI_Controller
                         'new_payable_amt' => $payable_amt,
                         'delivery_date' => strtotime(date('d-m-Y h:i:s A', strtotime('+7 days'))),
                         'order_date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'delivery_charge' => $delivery_charge,
+                        'delivery_charge' =>  $this->input->post('price_courier'),
                         'pincode' => $row_address->pincode,
                         'building_name' => $row_address->building_name,
                         'road_area_colony' => $row_address->road_area_colony,
@@ -2796,7 +2797,7 @@ class Site extends CI_Controller
                         'mobile_no' => $row_address->mobile_no,
                         'alter_mobile_no' => $row_address->alter_mobile_no,
                         'address_type' => $row_address->address_type,
-                        'id_mst_courier'=> $this->input->post('id_courier')
+                        'id_mst_courier' => $this->input->post('id_courier')
                     );
 
                     $data_ord = $this->security->xss_clean($data_arr);
@@ -2810,7 +2811,7 @@ class Site extends CI_Controller
                         $total_price = ($value->product_qty * $value->selling_price);
 
                         $product_mrp = $value->selling_price;
-
+                        $total_weight = ($value->product_qty * $value->weight);
                         $data_order = array(
                             'order_id'  =>  $order_id,
                             'user_id' => $this->user_id,
@@ -2823,6 +2824,7 @@ class Site extends CI_Controller
                             'product_size'  =>  $value->product_size,
                             'total_price'  =>  $total_price,
                             'delivery_charge'  =>  $value->delivery_charge,
+                            'total_weight' => $total_weight,
                             'pro_order_status' => '1'
                         );
 
@@ -3017,7 +3019,7 @@ class Site extends CI_Controller
                         'new_payable_amt' => $payable_amt,
                         'delivery_date' => strtotime(date('d-m-Y h:i:s A', strtotime('+7 days'))),
                         'order_date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'delivery_charge' => $delivery_charge,
+                        'delivery_charge' =>  $this->input->post('price_courier'),
                         'pincode' => $row_address->pincode,
                         'building_name' => $row_address->building_name,
                         'road_area_colony' => $row_address->road_area_colony,
@@ -3030,7 +3032,8 @@ class Site extends CI_Controller
                         'email' => $row_address->email,
                         'mobile_no' => $row_address->mobile_no,
                         'alter_mobile_no' => $row_address->alter_mobile_no,
-                        'address_type' => $row_address->address_type
+                        'address_type' => $row_address->address_type,
+                        'id_mst_courier' => $this->input->post('id_courier')
                     );
 
                     $data_ord = $this->security->xss_clean($data_arr);
@@ -3044,7 +3047,7 @@ class Site extends CI_Controller
                         $total_price = ($value->product_qty * $value->selling_price);
 
                         $product_mrp = $value->selling_price;
-
+                        $total_weight = ($value->product_qty * $value->weight);
                         $data_order = array(
                             'order_id'  =>  $order_id,
                             'user_id' => $this->user_id,
@@ -3057,6 +3060,7 @@ class Site extends CI_Controller
                             'product_size'  =>  $value->product_size,
                             'total_price'  =>  $total_price,
                             'delivery_charge'  =>  $value->delivery_charge,
+                            'total_weight' => $total_weight,
                             'pro_order_status' => '1'
                         );
 
