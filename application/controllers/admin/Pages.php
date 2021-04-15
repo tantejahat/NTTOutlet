@@ -15,6 +15,7 @@ class Pages extends CI_Controller
         $this->load->model('common_model');
         $this->load->model('Api_model', 'api_model');
         $this->load->model('Shipping_model');
+        $this->load->model('ManualTf_model');
         $app_setting = $this->api_model->app_details();
 
         $this->app_name = $app_setting->app_name;
@@ -323,6 +324,7 @@ class Pages extends CI_Controller
         $data["courier"] = $this->Shipping_model->get_list_mst_Courier();
         $data["shipping"] = $this->Shipping_model->get_courier();
         $data["redirectUrl"] = $this->redirectUrl;
+        $data["listbank"] = $this->ManualTf_model->Get_list_bank();
 
         $this->template->load('admin/template', 'admin/page/settings', $data); // :blush:
 
@@ -1492,8 +1494,20 @@ class Pages extends CI_Controller
                     'razorpay_status'  =>  $this->input->post('razorpay_status') ? $this->input->post('razorpay_status') : 'false',
                     'razorpay_key'  => trim($this->input->post('razorpay_key')),
                     'razorpay_secret'  => trim($this->input->post('razorpay_secret')),
-                    'razorpay_theme_color'  => trim($this->input->post('razorpay_theme_color'))
+                    'razorpay_theme_color'  => trim($this->input->post('razorpay_theme_color')),
+                    'manual_transfer_status' => trim($this->input->post('manual_tf_status'))
                 );
+                if ($data['manual_transfer_status'] == "true") {
+                    $arraybankname = trim($this->input->post('bank_name'));
+                    $arrayaccno = trim($this->input->post('acc_no'));
+                    $arrayaccname = trim($this->input->post('acc_name'));
+                    if (sizeof($arraybankname) > 0) {
+                        for ($i = 0; $i < sizeof($arraybankname); $i++) {
+                            # code...
+                            $insertbank = $this->ManualTf_model->Insert_bank($arraybankname[$i], $arrayaccno[$i], $arrayaccname[$i]);
+                        }
+                    }
+                }
                 break;
 
             case 'login_settings':

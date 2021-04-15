@@ -369,6 +369,60 @@ foreach ($home_category as $key => $value) {
                   </div>
                   <br />
                   <div class="form-group">
+                    <label class="col-md-3 control-label"><?= $this->lang->line('manual_tf_lbl') ?>:-</label>
+                    <div class="col-md-6">
+                      <div class="row toggle_btn">
+                        <input type="checkbox" id="cbx_manual_tf" class="cbx hidden" name="manual_tf_status" value="true" <?php echo $settings_row->manual_tf_status == 'true' ? 'checked=""' : '' ?>>
+                        <label for="cbx_manual_tf" class="lbl" style="float: left"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="container-fluid manual_tf_details">
+                    <div style="border: 1px solid #ccc;padding:10px">
+                      <div class="row">
+                        <div class="col-md-10 col-10">
+                          <div class="row rowmanualtf" id="idrowmanualtf">
+                            <div class="col-md-4 col-4"> <input type="text" name="bank_name[]" id="bank_name0" value="<?php echo (isset($listbank) && count($listbank) > 0 ? $listbank[0]->bank_name : '') ?>" placeholder="<?= $this->lang->line('manual_tf_bank_acc_lbl') ?>" class="form-control bank_name"></div>
+                            <div class="col-md-4 col-4"> <input type="text" name="acc_no[]" id="acc_no0" value="<?php echo (isset($listbank) && count($listbank) > 0 ? $listbank[0]->account_number : '') ?>" placeholder="<?= $this->lang->line('manual_tf_acc_no_lbl') ?>" class="form-control acc_no"></div>
+                            <div class="col-md-3 col-3"> <input type="text" name="acc_name[]" id="acc_name0" value="<?php echo (isset($listbank) && count($listbank) > 0 ? $listbank[0]->account_name : '') ?>" placeholder="<?= $this->lang->line('manual_tf_acc_name_lbl') ?>" class="form-control acc_name"></div>
+                            <div class="col-md-1 col-1 divdelete"> </div>
+                          </div>
+                          <div class="divrowclone">
+                            <?php if (isset($listbank) && count($listbank) > 1) {
+                              $x = 0;
+                              foreach ($listbank as $value) {
+                                if ($x > 0) {
+                                  $y = $x + 1;
+                            ?>
+
+
+
+
+                                  <div class="row rowmanualtf" id="idrowmanualtf<?= $y ?>">
+                                    <div class="col-md-4 col-4"> <input type="text" name="bank_name[]" id="bank_name0" value="<?= $value->bank_name ?>" placeholder="<?= $this->lang->line('manual_tf_bank_acc_lbl') ?>" class="form-control bank_name"></div>
+                                    <div class="col-md-4 col-3"> <input type="text" name="acc_no[]" id="acc_no0" value="<?= $value->account_number ?>" placeholder="<?= $this->lang->line('manual_tf_acc_no_lbl') ?>" class="form-control acc_no"></div>
+                                    <div class="col-md-3 col-4"> <input type="text" name="acc_name[]" id="acc_name0" value="<?= $value->account_name ?>" placeholder="<?= $this->lang->line('manual_tf_acc_name_lbl') ?>" class="form-control acc_name"></div>
+                                    <div class="col-md-1 col-1 divdelete"> </div>
+                                  </div>
+                            <?php }
+                                $x++;
+                              }
+                            } ?>
+                          </div>
+                        </div>
+                        <div class="col-md-2 col-2 text-center">
+                          <button class="btn btn-success btn-sm " id="btn_add_row_manual_tf" type="button"> <i class="fa fa-plus"></i></button>
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <br />
+                  <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
                       <button type="submit" name="payment_submit" class="btn btn-primary"><?= $this->lang->line('save_btn') ?></button>
                     </div>
@@ -976,7 +1030,11 @@ foreach ($home_category as $key => $value) {
   } else {
     $(".razorpay_details").hide();
   }
-
+  if ($("#cbx_manual_tf").is(":checked")) {
+    $(".manual_tf_details").show();
+  } else {
+    $(".manual_tf_details").hide();
+  }
 
   $("#cbx_paypal").on("click", function(e) {
     if ($(this).is(":checked")) {
@@ -1009,6 +1067,30 @@ foreach ($home_category as $key => $value) {
 
   });
 
+  $("#cbx_manual_tf").on("click", function(e) {
+    if ($(this).is(":checked")) {
+      $(".manual_tf_details").show();
+    } else {
+      $(".manual_tf_details").hide();
+    }
+  });
+  $("#btn_add_row_manual_tf").on("click", function(e) {
+    var rowId = $('.rowmanualtf').length + 1;
+    var clone = $("#idrowmanualtf").clone();
+    var idclone = clone.attr('id', 'idrowmanualtf' + rowId);
+    idclone.find("input.bank_name").val("");
+    idclone.find("input.acc_no").val("");
+    idclone.find("input.acc_name").val("");
+    if (rowId < 4) {
+      idclone.insertAfter("div.rowmanualtf:last");
+    }
+
+    $("#idrowmanualtf" + rowId).find("div.divdelete").append(' <button class="btn btn-danger btn-sm removeclone"  type="button"> <i class="fa fa-trash"></i></button>')
+
+  });
+  $(document).on("click", ".removeclone", function() {
+    $(this).closest(".rowmanualtf").remove();
+  });
 
   $("#cbx_google").on("click", function(e) {
     if ($(this).is(":checked")) {

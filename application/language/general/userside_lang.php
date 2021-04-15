@@ -136,9 +136,12 @@ $lang['pay_with_razorpay_lbl'] = "Pay with Razorpay";
 $lang['razorpay_msg_lbl'] = "Pay via Razorpay; you can pay with your credit card if you don’t have a Razorpay account.";
 
 
-$lang['coupon_save_msg_lbl'] = "You will save ### on this order!";		// please don't change ### because proper saving message will not display
+$lang['coupon_save_msg_lbl'] = "You will save ### on this order!";        // please don't change ### because proper saving message will not display
 
-
+$lang['manual_tf_lbl'] = "Manual Tranfer";
+$lang['manual_tf_bank_acc_lbl'] = "Bank Name";
+$lang['manual_tf_acc_no_lbl'] = "Account Number";
+$lang['manual_tf_acc_name_lbl'] = "Account Name";
 // End checkout page labels
 
 
@@ -218,9 +221,9 @@ $lang['size_chart_lbl'] = "Size Chart";
 $lang['show_more_lbl'] = "See More";
 $lang['show_less_lbl'] = "See Less";
 
-$lang['err_cart_item_buy_lbl'] = "You cannot buy more than ###  item(s) in single order!";		// please don't change ### because items count will not show
+$lang['err_cart_item_buy_lbl'] = "You cannot buy more than ###  item(s) in single order!";        // please don't change ### because items count will not show
 
-$lang['remain_cart_items_lbl'] = "You have ### more item(s) your cart.";		// please don't change ### because items count will not show
+$lang['remain_cart_items_lbl'] = "You have ### more item(s) your cart.";        // please don't change ### because items count will not show
 
 $lang['qty_lbl'] = "Qty";
 $lang['quick_view_lbl'] = "Quick View";
@@ -540,7 +543,7 @@ $lang['invalid_email_format'] = "Email format is invalid !";
 $lang['email_exist_error'] = "Email is already exist !";
 
 // for total records
-$lang['nos_records_msg'] = "### records found"; 	//don't remove ### otherwise count will no display
+$lang['nos_records_msg'] = "### records found";     //don't remove ### otherwise count will no display
 
 // for bank details exits
 $lang['bank_exist_error'] = "Bank details is already exist !";
