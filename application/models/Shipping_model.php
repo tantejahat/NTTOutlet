@@ -133,9 +133,10 @@ class Shipping_model extends CI_Model
                     }
                 }
             }
-
-            $checkprovince = $this->get_list_city_ro();
-            if (count($checkprovince) > 0) {
+            // print_r($datainsert);
+            // die();
+            $checkcity = $this->get_list_city_ro();
+            if (count($checkcity) > 0) {
                 //truncate
                 $this->db->truncate('tbl_city_ro');
             }

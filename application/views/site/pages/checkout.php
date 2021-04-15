@@ -41,7 +41,9 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
                   <input type="hidden" name="id_courier" class="id_courier" value="" id="id_courier">
                   <input type="hidden" name="price_courier" class="price_courier" value="" id="price_courier">
                   <span class="parentname_lbl">Tiki</span>
-
+                  <div class="address_list_edit">
+                    <a href="javascript:void(0)" class="btn_edit_shipping" data-text="<?= $this->lang->line('edit_btn') ?>"><?= $this->lang->line('edit_btn') ?></a>
+                  </div>
                   <p class="desc_lbl">
                     reguler
                   </p>
@@ -365,8 +367,8 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
             <input type="hidden" name="coupon_id" value="<?= $coupon_id ?>">
             <input type="hidden" name="order_address" value="<?= $order_address_id ?>">
             <input type="hidden" name="cart_ids" value="<?= $cart_ids ?>">
-            <input type="hidden" name="id_courier" class="id_courier" value="" >
-            <input type="hidden" name="price_courier" class="price_courier" value="" >
+            <input type="hidden" name="id_courier" class="id_courier" value="">
+            <input type="hidden" name="price_courier" class="price_courier" value="">
             <ul>
               <?php
               if ($this->db->get_where('tbl_settings', array('id' => '1'))->row()->cod_status != 'false') {

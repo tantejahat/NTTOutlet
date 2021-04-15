@@ -1671,7 +1671,7 @@ $(document).ready(function (event) {
 
 	//for address checkout 
 
-	$(".btn_add_shipping").on("click", function () {
+	$(".btn_add_shipping, .btn_edit_shipping").on("click", function () {
 		var id_address = $(".address_radio:checked").val();
 		var user_id = $("#user_id_shipping").val();
 		$.ajax({
@@ -1680,20 +1680,21 @@ $(document).ready(function (event) {
 			data: "id_address=" + id_address + "&user_id=" + user_id,
 			beforeSend: function () {
 				$('.btn_add_shipping').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...');
-
+				$(".btn_edit_shipping").text('Loading...');
 			},
 			success: function (res) {
 				var data = JSON.parse(res);
 				$newli = $("<ul>", {
 					"class": "list-group"
 				})
-                $(".btn_add_shipping").html('<i class="fa fa-plus"></i>' + $("#btnaddlbl").val())
+				$(".btn_add_shipping").html('<i class="fa fa-plus"></i>' + $("#btnaddlbl").val())
+				$(".btn_edit_shipping").text($(".btn_edit_shipping").data("text"))
 				var x = "<ul>";
 				if (data.length > 0) {
 					for (let index = 0; index < data.length; index++) {
 						const element = data[index];
-                        var img = element.path !=""  ? '<img src="' + element.path + '" width="30" class="rounded">':"";
-						x = x + "<li >" + img + element.name;
+						var img = element.path != "" ? '<img src="' + element.path + '" width="30" class="rounded">' : "";
+						x = x + "<li ><b>" + img + element.name + "</b>";
 						console.log(element);
 						if (element.child.length > 0) {
 							x = x + "<div class='list-group'>"
@@ -1702,12 +1703,12 @@ $(document).ready(function (event) {
 								x = x + "<a href='javascript:onclickchoosecourier(" + e.id + ")' data-id='" + e.id + "' data-price='" + e.price + "' data-est='" + e.est + "' class='list-group-item list-group-item-action'>  ";
 								x = x + "<label>" + e.name + "</label> <br>  ";
 								x = x + "<small>Price : " + e.price + "</small><br>  ";
-                                x = x + "<input type='hidden' id='rawprice" + e.id + "' value='" + e.rawprice + "'> ";
-                                  x = x + "<input type='hidden' id='price" + e.id + "' value='" + e.price + "'> ";
-                                x = x + "<input type='hidden' id='est" + e.id + "' value='" + e.est + "'> ";
-                                 x = x + "<input type='hidden' id='childname" + e.id + "' value='" + e.name + "'> ";
-                                  x = x + "<input type='hidden' id='parentname" + e.id + "' value='" + element.name + "'> ";
-                                    x = x + "<input type='hidden' id='imgpath" + e.id + "' value='" + element.path + "'> ";
+								x = x + "<input type='hidden' id='rawprice" + e.id + "' value='" + e.rawprice + "'> ";
+								x = x + "<input type='hidden' id='price" + e.id + "' value='" + e.price + "'> ";
+								x = x + "<input type='hidden' id='est" + e.id + "' value='" + e.est + "'> ";
+								x = x + "<input type='hidden' id='childname" + e.id + "' value='" + e.name + "'> ";
+								x = x + "<input type='hidden' id='parentname" + e.id + "' value='" + element.name + "'> ";
+								x = x + "<input type='hidden' id='imgpath" + e.id + "' value='" + element.path + "'> ";
 								x = x + "<small>Est : " + e.est + "</small>  ";
 								x = x + "</a>  ";
 							}

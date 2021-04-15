@@ -99,16 +99,16 @@ class Shipping extends CI_Controller
                 $weight = sizeof($getweight) > 0 ?  $getweight['ttl_weight'] : "1";
                 $courier = $value["code"];
                 $getcostro = $this->shipping_model->GetCostShippingRo($id_from, $id_to, $weight, $courier);
-                // echo json_encode($getcostro);die();
-               
+
+
                 $listchild = array();
                 if (isset($getcostro["rajaongkir"]["results"]) && count($getcostro["rajaongkir"]["results"]) > 0) {
                     $datacostcourier = $getcostro["rajaongkir"]["results"][0];
                     $courierparent = $datacostcourier["code"];
                     foreach ($value["child"] as  $c) {
-                  
-                      
-                       
+
+
+
                         foreach ($datacostcourier["costs"] as $v) {
                             $service = strtolower($courierparent . "-" . $v["service"]);
                             $c["code"] = $value["code"] == "pos" && $c["code"] == "pos-kilat" ?  $datacostcourier["code"] . "-" . $v["service"] : $c["code"];
@@ -119,7 +119,7 @@ class Shipping extends CI_Controller
                                     "name" => $c["name"],
                                     "id" => $c["id"],
                                     "price" => number_format($v['cost'][0]["value"], 2, ",", "."),
-                                    "rawprice"=> $v['cost'][0]["value"],
+                                    "rawprice" => $v['cost'][0]["value"],
                                     "est" => $v['cost'][0]["etd"] . " day"
                                 );
                                 array_push($listchild, $datachild);
@@ -128,12 +128,12 @@ class Shipping extends CI_Controller
                         # code...
 
                     }
-                }else{
+                } else {
                     continue;
                 }
                 $datacourir = array(
                     "name" => $value["name"],
-                    "path" => $value["path_img"],
+                    "path" => $value["path_img"] == null ? "" : base_url() . $value["path_img"],
                     "child" => $listchild
                 );
                 array_push($listcourir, $datacourir);
