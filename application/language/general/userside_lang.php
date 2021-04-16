@@ -135,6 +135,7 @@ $lang['razorpay_note_lbl'] = "Razorpay is only work with indian currency (INR)";
 $lang['pay_with_razorpay_lbl'] = "Pay with Razorpay";
 $lang['razorpay_msg_lbl'] = "Pay via Razorpay; you can pay with your credit card if you don’t have a Razorpay account.";
 
+$lang['manual_tf_msg_lbl'] = "Choose one of the bank account and transfer according to Total";
 
 $lang['coupon_save_msg_lbl'] = "You will save ### on this order!";        // please don't change ### because proper saving message will not display
 

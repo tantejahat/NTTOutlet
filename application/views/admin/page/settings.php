@@ -372,7 +372,7 @@ foreach ($home_category as $key => $value) {
                     <label class="col-md-3 control-label"><?= $this->lang->line('manual_tf_lbl') ?>:-</label>
                     <div class="col-md-6">
                       <div class="row toggle_btn">
-                        <input type="checkbox" id="cbx_manual_tf" class="cbx hidden" name="manual_tf_status" value="true" <?php echo $settings_row->manual_tf_status == 'true' ? 'checked=""' : '' ?>>
+                        <input type="checkbox" id="cbx_manual_tf" class="cbx hidden" name="manual_tf_status" value="true" <?php echo $settings_row->manual_transfer_status == 'true' ? 'checked=""' : '' ?>>
                         <label for="cbx_manual_tf" class="lbl" style="float: left"></label>
                       </div>
                     </div>
@@ -403,7 +403,7 @@ foreach ($home_category as $key => $value) {
                                     <div class="col-md-4 col-4"> <input type="text" name="bank_name[]" id="bank_name0" value="<?= $value->bank_name ?>" placeholder="<?= $this->lang->line('manual_tf_bank_acc_lbl') ?>" class="form-control bank_name"></div>
                                     <div class="col-md-4 col-3"> <input type="text" name="acc_no[]" id="acc_no0" value="<?= $value->account_number ?>" placeholder="<?= $this->lang->line('manual_tf_acc_no_lbl') ?>" class="form-control acc_no"></div>
                                     <div class="col-md-3 col-4"> <input type="text" name="acc_name[]" id="acc_name0" value="<?= $value->account_name ?>" placeholder="<?= $this->lang->line('manual_tf_acc_name_lbl') ?>" class="form-control acc_name"></div>
-                                    <div class="col-md-1 col-1 divdelete"> </div>
+                                    <div class="col-md-1 col-1 divdelete"><button class="btn btn-danger btn-sm removeclone" type="button"> <i class="fa fa-trash"></i></button> </div>
                                   </div>
                             <?php }
                                 $x++;

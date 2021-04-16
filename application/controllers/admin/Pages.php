@@ -1498,10 +1498,14 @@ class Pages extends CI_Controller
                     'manual_transfer_status' => trim($this->input->post('manual_tf_status'))
                 );
                 if ($data['manual_transfer_status'] == "true") {
-                    $arraybankname = trim($this->input->post('bank_name'));
-                    $arrayaccno = trim($this->input->post('acc_no'));
-                    $arrayaccname = trim($this->input->post('acc_name'));
+                    $arraybankname = $this->input->post('bank_name');
+                    $arrayaccno = $this->input->post('acc_no');
+                    $arrayaccname = $this->input->post('acc_name');
                     if (sizeof($arraybankname) > 0) {
+                        $checkbank=$this->ManualTf_model->Get_list_bank();
+                        if(count($checkbank)>0){
+                            $this->db->truncate('tbl_manual_tranfer');
+                        }
                         for ($i = 0; $i < sizeof($arraybankname); $i++) {
                             # code...
                             $insertbank = $this->ManualTf_model->Insert_bank($arraybankname[$i], $arrayaccno[$i], $arrayaccname[$i]);

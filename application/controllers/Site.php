@@ -2878,7 +2878,7 @@ class Site extends CI_Controller
                     $this->common_model->insert($data_usr, 'tbl_transaction');
 
                     $data_update = array(
-                        'order_status'  =>  '1',
+                        'order_status'  => trim($this->input->post('payment_method')) == "manual_tf" ? "99" : '1',
                     );
 
                     $this->common_model->update($data_update, $order_id, 'tbl_order_details');
@@ -3117,7 +3117,8 @@ class Site extends CI_Controller
                     $this->common_model->insert($data_usr, 'tbl_transaction');
 
                     $data_update = array(
-                        'order_status'  =>  '1',
+                        'order_status'  =>
+                        trim($this->input->post('payment_method')) == "manual_tf" ? "99" : '1',
                     );
 
                     $this->common_model->update($data_update, $order_id, 'tbl_order_details');

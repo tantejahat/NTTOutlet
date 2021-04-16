@@ -423,6 +423,41 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
 
                 </li>
               <?php } ?>
+              <?php
+
+              if ($this->db->get_where('tbl_settings', array('id' => '1'))->row()->manual_transfer_status != 'false') {
+                $listbank = $this->db->get('tbl_manual_tranfer')->result_array();
+
+                if (count($listbank) > 0) {
+                  $class = "col-md-12 col-sm-12 col-xs-12 text-center";
+                  if (count($listbank) == 2) {
+                    $class = "col-md-6 col-sm-12 col-xs-12 text-center";
+                  } else if (count($listbank) == 3) {
+                    $class = "col-md-4 col-sm-12 col-xs-12 text-center";
+                  }
+              ?>
+                  <li class="payment_method">
+                    <input id="payment_method_manual_tf" class="input-radio" name="payment_method" checked="checked" value="manual_tf" type="radio">
+                    <label for="payment_method_manual_tf"><?= $this->lang->line('manual_tf_lbl') ?></label>
+                    <div class="pay-box payment_method_manual_tf">
+                      <div class="col-md-12">
+                        <p><?= $this->lang->line('manual_tf_msg_lbl') ?></p>
+
+                        <?php foreach ($listbank as $row) { ?>
+                          <div class="<?= $class; ?>" style="padding:0 8px">
+                            <label style="margin-top: 10px;"><b><?= $row['bank_name'] ?></b></label><br>
+                            <label><b><?= $row['account_number'] ?></b></label><br>
+                            <label><b>a/n</b></label><br>
+                            <label><b><?= $row['account_name'] ?></b></label>
+                          </div>
+                        <?php } ?>
+
+
+                      </div>
+                    </div>
+                  </li>
+              <?php  }
+              } ?>
               <input type="hidden" name="current_page" value="<?= $fullURL ?>">
               <button class="order-btn btn_place_order"><?= $this->lang->line('place_ord_btn') ?></button>
             </ul>
