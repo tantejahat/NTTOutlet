@@ -367,8 +367,7 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
             <input type="hidden" name="coupon_id" value="<?= $coupon_id ?>">
             <input type="hidden" name="order_address" value="<?= $order_address_id ?>">
             <input type="hidden" name="cart_ids" value="<?= $cart_ids ?>">
-            <input type="hidden" name="id_courier" class="id_courier" value="">
-            <input type="hidden" name="price_courier" class="price_courier" value="">
+
             <ul>
               <?php
               if ($this->db->get_where('tbl_settings', array('id' => '1'))->row()->cod_status != 'false') {
@@ -424,6 +423,8 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
                 </li>
               <?php } ?>
               <input type="hidden" name="current_page" value="<?= $fullURL ?>">
+              <input type="hidden" name="id_courier" class="id_courier" value="0">
+              <input type="hidden" name="price_courier" class="price_courier" value="0">
               <button class="order-btn btn_place_order"><?= $this->lang->line('place_ord_btn') ?></button>
             </ul>
           </form>
@@ -702,7 +703,7 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
       var name = $("#childname" + id).val();
       var imgpath = $("#imgpath" + id).val();
       var totalamount = $("#totalamount").val();
-  
+
       var img = imgpath != "" ? '<img src="' + imgpath + '" width="30" class="rounded">' : "";
       $(".parentname_lbl").text(parentname);
       $(".desc_lbl").text(name);
@@ -712,7 +713,7 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
       $(".imgshipping").html(img);
       $(".price_courier").val(rawprice);
       total = parseInt(rawprice) + parseInt(totalamount);
-  
+
       $(".total-amount").html("");
       $(".total-amount").text("Rp. " + numberWithCommas(total));
       // var idcourier=this.data()

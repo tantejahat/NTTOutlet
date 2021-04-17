@@ -903,13 +903,13 @@ $(document).ready(function (event) {
 		var btn = $(this);
 
 		var _formData = $("form[name='place_order']").serializeArray();
-
+console.log(_formData);
 		/*console.log(_formData);*/
 
-		if (_formData[2]['value'] != '0') {
+		if (_formData[2]['value'] != '0' && _formData[6]['value']!='0') {
 
 			var _payment_method = _formData[4]['value'];
-
+console.log(_payment_method);
 			if (_payment_method == 'cod') {
 
 				btn.attr("disabled", true);
@@ -1074,6 +1074,13 @@ $(document).ready(function (event) {
 				text: Settings.err_shipping_address,
 				type: "error"
 			});
+			 if(_formData[6]['value'] == '0'){
+					swal({
+						title: Settings.err_something_went_wrong,
+						text: Settings.err_shipping_courier,
+						type: "error"
+					});
+			 }
 		}
 
 	});
@@ -1695,7 +1702,7 @@ $(document).ready(function (event) {
 						const element = data[index];
 						var img = element.path != "" ? '<img src="' + element.path + '" width="30" class="rounded">' : "";
 						x = x + "<li ><b>" + img + element.name + "</b>";
-						console.log(element);
+					
 						if (element.child.length > 0) {
 							x = x + "<div class='list-group'>"
 							for (let y = 0; y < element.child.length; y++) {
