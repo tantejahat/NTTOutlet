@@ -31,7 +31,7 @@ class Shipping_model extends CI_Model
         $parameter = "";
         $baseurl= $this->baseurl_rajaongkir();
         $this->baseurl_rajaongkir= strpos($baseurl, 'rajaongkir') !== false? $baseurl:$this->baseurl_rajaongkir;
-        $this->api_key_ro= strpos($baseurl, 'rajaongkir') == false ?$this->api_key_rajaongkir(): $this->api_key_ro;
+        $this->api_key_ro= strpos($baseurl, 'rajaongkir') !== false ?$this->api_key_rajaongkir(): $this->api_key_ro;
         $ro_id_provinsi = $data["id_province_ro"];
         if ($type == "provinsi") {
             $url = $this->baseurl_rajaongkir . "province";

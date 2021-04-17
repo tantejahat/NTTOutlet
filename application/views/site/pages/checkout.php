@@ -702,8 +702,7 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
       var name = $("#childname" + id).val();
       var imgpath = $("#imgpath" + id).val();
       var totalamount = $("#totalamount").val();
-      console.log(price);
-
+  
       var img = imgpath != "" ? '<img src="' + imgpath + '" width="30" class="rounded">' : "";
       $(".parentname_lbl").text(parentname);
       $(".desc_lbl").text(name);
@@ -713,8 +712,7 @@ $cart_type = ($buy_now == 'true') ? 'temp_cart' : 'main_cart';
       $(".imgshipping").html(img);
       $(".price_courier").val(rawprice);
       total = parseInt(rawprice) + parseInt(totalamount);
-      console.log(totalamount);
-      console.log(total);
+  
       $(".total-amount").html("");
       $(".total-amount").text("Rp. " + numberWithCommas(total));
       // var idcourier=this.data()
