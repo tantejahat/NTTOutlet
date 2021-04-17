@@ -100,7 +100,7 @@ class Shipping extends CI_Controller
                 $courier = $value["code"];
                 $getcostro = $this->shipping_model->GetCostShippingRo($id_from, $id_to, $weight, $courier);
 
-
+               
                 $listchild = array();
                 if (isset($getcostro["rajaongkir"]["results"]) && count($getcostro["rajaongkir"]["results"]) > 0) {
                     $datacostcourier = $getcostro["rajaongkir"]["results"][0];

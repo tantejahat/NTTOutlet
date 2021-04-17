@@ -1495,7 +1495,7 @@ class Pages extends CI_Controller
                     'razorpay_key'  => trim($this->input->post('razorpay_key')),
                     'razorpay_secret'  => trim($this->input->post('razorpay_secret')),
                     'razorpay_theme_color'  => trim($this->input->post('razorpay_theme_color')),
-                    'manual_transfer_status' => trim($this->input->post('manual_tf_status'))
+                    'manual_transfer_status' =>$this->input->post('manual_tf_status') ? $this->input->post('manual_tf_status') : 'false',
                 );
                 if ($data['manual_transfer_status'] == "true") {
                     $arraybankname = $this->input->post('bank_name');

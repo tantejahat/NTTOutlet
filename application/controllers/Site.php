@@ -3109,7 +3109,8 @@ class Site extends CI_Controller
                         'payment_amt' => $payable_amt,
                         'payment_id' => '0',
                         'date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'status' => '1'
+                        'status' =>
+                        trim($this->input->post('payment_method')) == "manual_tf" ? "99" : '1',
                     );
 
                     $data_usr = $this->security->xss_clean($data_arr);

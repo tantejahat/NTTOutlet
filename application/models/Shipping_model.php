@@ -31,7 +31,7 @@ class Shipping_model extends CI_Model
         $parameter = "";
         $baseurl= $this->baseurl_rajaongkir();
         $this->baseurl_rajaongkir= strpos($baseurl, 'rajaongkir') !== false? $baseurl:$this->baseurl_rajaongkir;
-        $this->api_key_ro= strpos($baseurl, 'rajaongkir') == false ?$this->api_key_rajaongkir(): $this->api_key_ro;
+        $this->api_key_ro= strpos($baseurl, 'rajaongkir') !== false ?$this->api_key_rajaongkir(): $this->api_key_ro;
         $ro_id_provinsi = $data["id_province_ro"];
         if ($type == "provinsi") {
             $url = $this->baseurl_rajaongkir . "province";
@@ -40,7 +40,7 @@ class Shipping_model extends CI_Model
         } else {
             $url = $this->baseurl_rajaongkir . "cost";
         }
-
+// print_r($this->baseurl_rajaongkir);die();
         $curl = curl_init();
         if ($type == "cost") {
             $datasend = "origin=" . $data["id_kota_pengirim"] . "&destination=" . $data["id_kota_tujuan"] . "&weight=" . $data["berat"] . "&courier=" . $data["id_kurir"];
