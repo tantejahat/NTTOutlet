@@ -111,7 +111,7 @@ $lang['discount_lbl'] = "Discount";
 $lang['billing_section_lbl'] = "Billing details";
 $lang['order_section_lbl'] = "Your Order";
 $lang['destination_address_lbl'] = "Destination Address";
-$lang['shipping_lbl'] = "Shipping";
+$lang['shipping_lbl'] = "Shipping Courier";
 
 $lang['apply_coupan_lbl'] = "Apply Available Coupon Code!";
 $lang['remove_coupan_lbl'] = "Remove Coupon Code!";
@@ -202,7 +202,7 @@ $lang['change_password_lbl'] = "Change Password";
 $lang['addresses_lbl'] = "Addresses";
 $lang['add_new_address_lbl'] = "Add New Address";
 $lang['no_address_lbl'] = "Sorry! no address found";
-$lang['choose_shipping'] = "Choose Shipping";
+$lang['choose_shipping'] = "Choose Shipping Courier";
 
 $lang['add_new_bank_lbl'] = "Add New Account";
 $lang['saved_bank_lbl'] = "Saved Bank Account";
@@ -525,6 +525,7 @@ $lang['pro_ord_cancel'] = "Your product order has been cancelled.";
 $lang['claim_msg'] = "Your Claim for refund has been submitted.";
 
 $lang['no_shipping_address_err'] = "Please create or select your shipping address";
+$lang['no_shipping_courier_err'] = "Please create or select your shipping courier";
 
 $lang['no_ord_status_lbl'] = "Order status is not available";
 
