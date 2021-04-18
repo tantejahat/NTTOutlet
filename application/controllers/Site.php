@@ -2711,7 +2711,8 @@ class Site extends CI_Controller
             $this->session->set_flashdata('response_msg', $message);
             redirect('login-register', 'refresh');
         }
-
+        $status_order = trim($this->input->post('payment_method')) == "manual_tf" ? "6" : "1";
+        $status_order_desc= trim($this->input->post('payment_method')) == "manual_tf" ? "6" : "1";
         $buy_now = $this->input->post('buy_now');
 
         $row_address = $this->common_model->selectByid($this->input->post('order_address'), 'tbl_addresses');
@@ -2727,7 +2728,7 @@ class Site extends CI_Controller
             $order_unique_id = 'ORD' . $this->get_order_unique_id() . rand(0, 1000);
 
             $total_amount = $you_save = $delivery_charge = $weight = 0;
-
+            $delivery_charge            = $this->input->post('price_courier');
             if ($buy_now == 'false') {
 
                 $my_cart = $this->api_model->get_cart($this->user_id);
@@ -2748,7 +2749,7 @@ class Site extends CI_Controller
                         }
 
                         $total_cart_amt += $value->selling_price * $value->product_qty;
-                        $delivery_charge += $value->delivery_charge;
+                        // $delivery_charge += $value->delivery_charge;
                         $weight += $value->product_qty * $value->weight;
                         $you_save += $value->you_save_amt * $value->product_qty;
                     }
@@ -2783,7 +2784,7 @@ class Site extends CI_Controller
                         'new_payable_amt' => $payable_amt,
                         'delivery_date' => strtotime(date('d-m-Y h:i:s A', strtotime('+7 days'))),
                         'order_date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'delivery_charge' =>  $this->input->post('price_courier'),
+                        'delivery_charge' => $delivery_charge,
                         'pincode' => $row_address->pincode,
                         'building_name' => $row_address->building_name,
                         'road_area_colony' => $row_address->road_area_colony,
@@ -2803,7 +2804,6 @@ class Site extends CI_Controller
                     $data_ord = $this->security->xss_clean($data_arr);
 
                     $order_id = $this->common_model->insert($data_ord, 'tbl_order_details');
-
                     foreach ($my_cart as $value) {
 
                         $cart_id = $value->id;
@@ -2825,13 +2825,12 @@ class Site extends CI_Controller
                             'total_price'  =>  $total_price,
                             'delivery_charge'  =>  $value->delivery_charge,
                             'total_weight' => $total_weight,
-                            'pro_order_status' => '1'
+                            'pro_order_status' => $status_order
                         );
 
                         $data_ord_detail = $this->security->xss_clean($data_order);
-
-                        $this->common_model->insert($data_ord_detail, 'tbl_order_items');
-
+ 
+                    $insert_id=   $this->common_model->insert($data_ord_detail, 'tbl_order_items');
                         $thumb_img_nm = preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->common_model->selectByidsParam(array('id' => $value->product_id), 'tbl_product', 'featured_image'));
 
                         $img_file = $this->_create_thumbnail('assets/images/products/', $thumb_img_nm, $this->common_model->selectByidsParam(array('id' => $value->product_id), 'tbl_product', 'featured_image'), 300, 300);
@@ -2860,7 +2859,6 @@ class Site extends CI_Controller
 
                         $this->common_model->delete($cart_id, 'tbl_cart');
                     }
-
                     $data_arr = array(
                         'user_id' => $this->user_id,
                         'email' => $this->session->userdata('user_email'),
@@ -2870,7 +2868,7 @@ class Site extends CI_Controller
                         'payment_amt' => $payable_amt,
                         'payment_id' => '0',
                         'date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'status' => '1'
+                        'status' => $status_order
                     );
 
                     $data_usr = $this->security->xss_clean($data_arr);
@@ -2878,7 +2876,7 @@ class Site extends CI_Controller
                     $this->common_model->insert($data_usr, 'tbl_transaction');
 
                     $data_update = array(
-                        'order_status'  => '1',
+                        'order_status'  => $status_order
                     );
 
                     $this->common_model->update($data_update, $order_id, 'tbl_order_details');
@@ -2905,7 +2903,7 @@ class Site extends CI_Controller
                             'order_id' => $order_id,
                             'user_id' => $value2->user_id,
                             'product_id' => $value2->product_id,
-                            'status_title' => '1',
+                            'status_title' => $status_order,
                             'status_desc' => $this->lang->line('0'),
                             'created_at' => strtotime(date('d-m-Y h:i:s A', now()))
                         );
@@ -2985,7 +2983,7 @@ class Site extends CI_Controller
                         }
 
                         $total_cart_amt += $value->selling_price * $value->product_qty;
-                        $delivery_charge += $value->delivery_charge;
+                        // $delivery_charge += $value->delivery_charge;
                         $you_save += $value->you_save_amt * $value->product_qty;
                     }
 
@@ -3019,7 +3017,7 @@ class Site extends CI_Controller
                         'new_payable_amt' => $payable_amt,
                         'delivery_date' => strtotime(date('d-m-Y h:i:s A', strtotime('+7 days'))),
                         'order_date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'delivery_charge' =>  $this->input->post('price_courier'),
+                        'delivery_charge' => $delivery_charge,
                         'pincode' => $row_address->pincode,
                         'building_name' => $row_address->building_name,
                         'road_area_colony' => $row_address->road_area_colony,
@@ -3061,7 +3059,7 @@ class Site extends CI_Controller
                             'total_price'  =>  $total_price,
                             'delivery_charge'  =>  $value->delivery_charge,
                             'total_weight' => $total_weight,
-                            'pro_order_status' => '1'
+                            'pro_order_status' => $status_order
                         );
 
                         $data_ord_detail = $this->security->xss_clean($data_order);
@@ -3109,7 +3107,7 @@ class Site extends CI_Controller
                         'payment_amt' => $payable_amt,
                         'payment_id' => '0',
                         'date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'status' =>"1"
+                        'status' => $status_order
                     );
 
                     $data_usr = $this->security->xss_clean($data_arr);
@@ -3117,7 +3115,7 @@ class Site extends CI_Controller
                     $this->common_model->insert($data_usr, 'tbl_transaction');
 
                     $data_update = array(
-                        'order_status'  =>"1"
+                        'order_status'  => $status_order
                     );
 
                     $this->common_model->update($data_update, $order_id, 'tbl_order_details');
@@ -3144,7 +3142,7 @@ class Site extends CI_Controller
                             'order_id' => $order_id,
                             'user_id' => $value2->user_id,
                             'product_id' => $value2->product_id,
-                            'status_title' => '1',
+                            'status_title' => $status_order,
                             'status_desc' => $this->lang->line('0'),
                             'created_at' => strtotime(date('d-m-Y h:i:s A', now()))
                         );

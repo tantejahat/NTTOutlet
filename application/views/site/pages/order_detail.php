@@ -216,8 +216,8 @@
 				?>
 
 			  </div>
-			  <hr style="margin: 10px 0px">
-			  <div class="row">
+			  <!-- <hr style="margin: 10px 0px"> -->
+			  <!-- <div class="row">
 			  	<?php 
 					if($value->pro_order_status!='5')
 					{
@@ -335,7 +335,7 @@
 						<?php
 						}
 					?>
-			  </div>
+			  </div> -->
 			</div>
 		  <?php } ?>		  
 		</div>
