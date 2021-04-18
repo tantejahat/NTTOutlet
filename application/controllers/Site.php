@@ -2878,7 +2878,7 @@ class Site extends CI_Controller
                     $this->common_model->insert($data_usr, 'tbl_transaction');
 
                     $data_update = array(
-                        'order_status'  => trim($this->input->post('payment_method')) == "manual_tf" ? "99" : '1',
+                        'order_status'  => '1',
                     );
 
                     $this->common_model->update($data_update, $order_id, 'tbl_order_details');
@@ -3109,8 +3109,7 @@ class Site extends CI_Controller
                         'payment_amt' => $payable_amt,
                         'payment_id' => '0',
                         'date' => strtotime(date('d-m-Y h:i:s A', now())),
-                        'status' =>
-                        trim($this->input->post('payment_method')) == "manual_tf" ? "99" : '1',
+                        'status' =>"1"
                     );
 
                     $data_usr = $this->security->xss_clean($data_arr);
@@ -3118,8 +3117,7 @@ class Site extends CI_Controller
                     $this->common_model->insert($data_usr, 'tbl_transaction');
 
                     $data_update = array(
-                        'order_status'  =>
-                        trim($this->input->post('payment_method')) == "manual_tf" ? "99" : '1',
+                        'order_status'  =>"1"
                     );
 
                     $this->common_model->update($data_update, $order_id, 'tbl_order_details');

@@ -903,44 +903,42 @@ $(document).ready(function (event) {
 		var btn = $(this);
 
 		var _formData = $("form[name='place_order']").serializeArray();
-console.log(_formData);
-		/*console.log(_formData);*/
 
-		if (_formData[2]['value'] != '0' && _formData[6]['value']!='0') {
+		if (_formData[2]['value'] != '0' && _formData[6]['value'] != '0') {
 
 			var _payment_method = _formData[4]['value'];
-console.log(_payment_method);
-			if (_payment_method == 'cod') {
+			console.log(_payment_method);
+			if (_payment_method == 'cod' || _payment_method == "manual_tf") {
 
 				btn.attr("disabled", true);
+				if (_payment_method == 'cod') {
+					if ($(".input_txt").val() != '') {
+						btn.attr("disabled", false);
+						_count = 0;
+						$(".input_txt").css("border-color", "#ccc");
+						var _sum = parseInt($("._lblnum1").text()) + parseInt($("._lblnum2").text());
+						if (parseInt($(".input_txt").val()) != _sum) {
+							swal("Enter correct value !!!");
 
-				if ($(".input_txt").val() != '') {
-					btn.attr("disabled", false);
-					_count = 0;
-					$(".input_txt").css("border-color", "#ccc");
-					var _sum = parseInt($("._lblnum1").text()) + parseInt($("._lblnum2").text());
-					if (parseInt($(".input_txt").val()) != _sum) {
-						swal("Enter correct value !!!");
+							var x = Math.floor((Math.random() * 10) + 1);
+							var y = Math.floor((Math.random() * 10) + 1);
 
-						var x = Math.floor((Math.random() * 10) + 1);
-						var y = Math.floor((Math.random() * 10) + 1);
-
-						$("._lblnum1").text(x);
-						$("._lblnum2").text(y);
-						$(".input_txt").val('');
+							$("._lblnum1").text(x);
+							$("._lblnum2").text(y);
+							$(".input_txt").val('');
+							_count++;
+						}
+					} else {
 						_count++;
+						$(".input_txt").css("border-color", "red");
+						swal({
+							title: 'Required',
+							text: 'Enter correct value!',
+							type: "error"
+						});
+						btn.attr("disabled", false);
 					}
-				} else {
-					_count++;
-					$(".input_txt").css("border-color", "red");
-					swal({
-						title: 'Required',
-						text: 'Enter correct value!',
-						type: "error"
-					});
-					btn.attr("disabled", false);
 				}
-
 				if (_count == 0) {
 
 					$(".process_loader").show();
@@ -1074,13 +1072,13 @@ console.log(_payment_method);
 				text: Settings.err_shipping_address,
 				type: "error"
 			});
-			 if(_formData[6]['value'] == '0'){
-					swal({
-						title: Settings.err_something_went_wrong,
-						text: Settings.err_shipping_courier,
-						type: "error"
-					});
-			 }
+			if (_formData[6]['value'] == '0') {
+				swal({
+					title: Settings.err_something_went_wrong,
+					text: Settings.err_shipping_courier,
+					type: "error"
+				});
+			}
 		}
 
 	});
@@ -1702,7 +1700,7 @@ console.log(_payment_method);
 						const element = data[index];
 						var img = element.path != "" ? '<img src="' + element.path + '" width="30" class="rounded">' : "";
 						x = x + "<li ><b>" + img + element.name + "</b>";
-					
+
 						if (element.child.length > 0) {
 							x = x + "<div class='list-group'>"
 							for (let y = 0; y < element.child.length; y++) {

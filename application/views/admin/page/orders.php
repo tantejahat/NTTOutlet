@@ -111,7 +111,9 @@ $ci =& get_instance();
               case '4':
               $_bnt_class='label-success-cust';
               break;
-
+              case '6':
+                $_bnt_class = 'label-info-cust';
+                break;
               default:
               $_bnt_class='label-danger';
               break;
