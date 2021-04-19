@@ -517,6 +517,9 @@ $lang['2'] = "Packed";
 $lang['3'] = "Shipped";
 $lang['4'] = "Delivered";
 $lang['5'] = "Cancelled";
+$lang['6'] = "Waiting Transfer";
+$lang['7']="Confirm Transfer";
+$lang["payment_slip"]="Payment Slip";
 
 $lang['ord_cancel'] = "Your order has been cancelled.";
 

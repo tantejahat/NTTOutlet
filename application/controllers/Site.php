@@ -2712,7 +2712,7 @@ class Site extends CI_Controller
             redirect('login-register', 'refresh');
         }
         $status_order = trim($this->input->post('payment_method')) == "manual_tf" ? "6" : "1";
-        $status_order_desc= trim($this->input->post('payment_method')) == "manual_tf" ? "6" : "1";
+        $status_order_desc= trim($this->input->post('payment_method')) == "manual_tf" ? $this->lang->line('5') : $this->lang->line('0');
         $buy_now = $this->input->post('buy_now');
 
         $row_address = $this->common_model->selectByid($this->input->post('order_address'), 'tbl_addresses');
@@ -2763,7 +2763,7 @@ class Site extends CI_Controller
                     if ($coupon_id == 0) {
                         $discount = 0;
                         $discount_amt = 0;
-                        $payable_amt = number_format(($total_cart_amt + $delivery_charge), 2);
+                        $payable_amt = ($total_cart_amt + $delivery_charge);
                     } else {
 
                         $coupon_json = json_decode($this->inner_apply_coupon($coupon_id));
@@ -2771,7 +2771,6 @@ class Site extends CI_Controller
                         $discount_amt = $coupon_json->discount_amt;
                         $payable_amt = $coupon_json->payable_amt;
                     }
-
                     $data_arr = array(
                         'user_id' => $this->user_id,
                         'coupon_id' => $this->input->post('coupon_id'),
@@ -2885,8 +2884,8 @@ class Site extends CI_Controller
                         'order_id' => $order_id,
                         'user_id' => $this->user_id,
                         'product_id' => '0',
-                        'status_title' => '1',
-                        'status_desc' => $this->lang->line('0'),
+                        'status_title' => $status_order,
+                        'status_desc' =>$status_order_desc,
                         'created_at' => strtotime(date('d-m-Y h:i:s A', now()))
                     );
 
@@ -2904,7 +2903,7 @@ class Site extends CI_Controller
                             'user_id' => $value2->user_id,
                             'product_id' => $value2->product_id,
                             'status_title' => $status_order,
-                            'status_desc' => $this->lang->line('0'),
+                            'status_desc' =>  $status_order_desc,
                             'created_at' => strtotime(date('d-m-Y h:i:s A', now()))
                         );
 
@@ -3124,8 +3123,8 @@ class Site extends CI_Controller
                         'order_id' => $order_id,
                         'user_id' => $this->user_id,
                         'product_id' => '0',
-                        'status_title' => '1',
-                        'status_desc' => $this->lang->line('0'),
+                        'status_title' => $status_order,
+                        'status_desc' => $status_order_desc,
                         'created_at' => strtotime(date('d-m-Y h:i:s A', now()))
                     );
 
@@ -3143,7 +3142,7 @@ class Site extends CI_Controller
                             'user_id' => $value2->user_id,
                             'product_id' => $value2->product_id,
                             'status_title' => $status_order,
-                            'status_desc' => $this->lang->line('0'),
+                            'status_desc' =>  $status_order_desc,
                             'created_at' => strtotime(date('d-m-Y h:i:s A', now()))
                         );
 
